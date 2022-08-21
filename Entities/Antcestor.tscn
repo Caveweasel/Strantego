@@ -1,0 +1,134 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Entities/MovementCircles.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Antcestor.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/A.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Circle.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/W.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Entities/Troop.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/S.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Spacebar.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/D.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Shadow.png" type="Texture" id=10]
+[ext_resource path="res://Entities/Highlight.gd" type="Script" id=11]
+
+[node name="Antcestor" type="Sprite" groups=[
+"Arena",
+]]
+z_index = 2
+texture = ExtResource( 6 )
+script = ExtResource( 2 )
+
+[node name="MovementCircles" type="Node2D" parent="." groups=[
+"Arena",
+]]
+modulate = Color( 1, 1, 1, 0.74902 )
+z_index = 10
+script = ExtResource( 1 )
+
+[node name="Left" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -128, 0 )
+z_index = 2
+texture = ExtResource( 4 )
+
+[node name="Right" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 128, 0 )
+texture = ExtResource( 4 )
+
+[node name="Up" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -128 )
+texture = ExtResource( 4 )
+
+[node name="Down" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 128 )
+texture = ExtResource( 4 )
+
+[node name="UpLeft" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -128, -128 )
+texture = ExtResource( 4 )
+
+[node name="DownRight" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 128, 128 )
+texture = ExtResource( 4 )
+
+[node name="UpRight" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 128, -128 )
+texture = ExtResource( 4 )
+
+[node name="DownLeft" type="Sprite" parent="MovementCircles"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -128, 128 )
+texture = ExtResource( 4 )
+
+[node name="WASDIcons" type="Node2D" parent="MovementCircles"]
+
+[node name="A" type="Sprite" parent="MovementCircles/WASDIcons"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -128, 0 )
+z_index = 2
+texture = ExtResource( 3 )
+
+[node name="D" type="Sprite" parent="MovementCircles/WASDIcons"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 128, 0 )
+z_index = 2
+texture = ExtResource( 9 )
+
+[node name="W" type="Sprite" parent="MovementCircles/WASDIcons"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -128 )
+z_index = 2
+texture = ExtResource( 5 )
+
+[node name="S" type="Sprite" parent="MovementCircles/WASDIcons"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 128 )
+z_index = 2
+texture = ExtResource( 7 )
+
+[node name="Spacebar" type="Sprite" parent="MovementCircles/WASDIcons"]
+self_modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 8 )
+
+[node name="WASDMovementTween" type="Tween" parent="MovementCircles/WASDIcons"]
+
+[node name="WASDColorTween" type="Tween" parent="MovementCircles/WASDIcons"]
+
+[node name="Shadow" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.247059 )
+position = Vector2( 0, 32 )
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 10 )
+
+[node name="ShadowTween" type="Tween" parent="Shadow"]
+
+[node name="MovementTween" type="Tween" parent="."]
+
+[node name="AttackTween" type="Tween" parent="."]
+
+[node name="VisibilityTween" type="Tween" parent="."]
+
+[node name="AttackAnimationTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="Highlight" type="Sprite" parent="."]
+z_index = 20
+script = ExtResource( 11 )
+
+[node name="ColorTween" type="Tween" parent="Highlight"]
+[connection signal="timeout" from="AttackAnimationTimer" to="." method="_on_AttackAnimationTimer_timeout"]
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
+[connection signal="tween_completed" from="Highlight/ColorTween" to="Highlight" method="_on_ColorTween_tween_completed"]

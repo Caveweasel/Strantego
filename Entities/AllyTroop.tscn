@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/AllyTroop.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Antcestor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Entities/TroopAlly.png" type="Texture" id=3]
+
+[node name="AllyTroop" instance=ExtResource( 2 )]
+texture = ExtResource( 3 )
+script = ExtResource( 1 )

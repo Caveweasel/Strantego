@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Entities/DamageableObstacle.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Entities/Obstacles/Twig.png" type="Texture" id=2]
+
+[node name="DamageableObstacle" type="Sprite" groups=[
+"Arena",
+]]
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="AnimationTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 2.0
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
