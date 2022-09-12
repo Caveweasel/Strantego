@@ -2,7 +2,8 @@ extends Node2D
 
 #Global variables
 onready var e = get_parent()
-onready var gyne = e.get_parent().get_node("Gyne")
+#onready var gyne = e.get_parent().get_node("Gyne")
+var gyne
 onready var arena = get_node("/root/BattleSceneTest")
 onready var players = get_node("/root/BattleSceneTest/Players")
 onready var ownallies = get_parent().get_parent() #Which entities it is allies with
@@ -65,7 +66,7 @@ func arena_update():
 
 
 func detect_obstacles(): #Detects obstacles
-	var tilemap = get_node("/root/BattleSceneTest/TileMap")
+#	var tilemap = get_node("/root/BattleSceneTest/TileMap")
 	
 	var currentxtile = e.occupiedxtile
 	var currentytile = e.occupiedytile
@@ -88,19 +89,19 @@ func detect_obstacles(): #Detects obstacles
 		get_child(3).self_modulate = offlimitsarea
 		canmovedown = 0
 	
-	#Makes the circles grey if there is a rock
-	if tilemap.get_cell(currentxtile-1, currentytile) == 1:
-		get_child(0).self_modulate = immoveablearea
-		canmoveleft = 0
-	if tilemap.get_cell(currentxtile+1, currentytile) == 1:
-		get_child(1).self_modulate = immoveablearea
-		canmoveright = 0
-	if tilemap.get_cell(currentxtile, currentytile-1) == 1:
-		get_child(2).self_modulate = immoveablearea
-		canmoveup = 0
-	if tilemap.get_cell(currentxtile, currentytile+1) == 1:
-		get_child(3).self_modulate = immoveablearea
-		canmovedown = 0
+#	#Makes the circles grey if there is a rock
+#	if tilemap.get_cell(currentxtile-1, currentytile) == 1:
+#		get_child(0).self_modulate = immoveablearea
+#		canmoveleft = 0
+#	if tilemap.get_cell(currentxtile+1, currentytile) == 1:
+#		get_child(1).self_modulate = immoveablearea
+#		canmoveright = 0
+#	if tilemap.get_cell(currentxtile, currentytile-1) == 1:
+#		get_child(2).self_modulate = immoveablearea
+#		canmoveup = 0
+#	if tilemap.get_cell(currentxtile, currentytile+1) == 1:
+#		get_child(3).self_modulate = immoveablearea
+#		canmovedown = 0
 
 
 func movement_update(): #Detects entities
@@ -129,35 +130,35 @@ func movement_update(): #Detects entities
 	canmoveupleft = 0
 	canmovedownleft = 0
 	canmoveupright = 0
-	canmoveupleft = 0
+	canmovedownright = 0
 	
 	#Makes the circles red if there is an enemy
 	for l in players.get_child_count():
 		if not players.get_child(l) == ownallies: #If it isn't its own colony
 			for i in players.get_child(l).get_child_count():
 				if players.get_child(l).get_child(i).occupiedxtile == currentxtile - 1 and players.get_child(l).get_child(i).occupiedytile == currentytile and not players.get_child(l).get_child(i).dead:
-					if e.canattack:
+					if e.canattack and players.get_child(l).get_child(i).attackable:
 						get_child(0).self_modulate = attackablearea
 						canmoveleft = 2
 					else:
 						get_child(0).self_modulate = immoveablearea
 						canmoveleft = 0
 				elif players.get_child(l).get_child(i).occupiedxtile == currentxtile + 1 and players.get_child(l).get_child(i).occupiedytile == currentytile and not players.get_child(l).get_child(i).dead:
-					if e.canattack:
+					if e.canattack and players.get_child(l).get_child(i).attackable:
 						get_child(1).self_modulate = attackablearea
 						canmoveright = 2
 					else:
 						get_child(1).self_modulate = immoveablearea
 						canmoveright = 0
 				elif players.get_child(l).get_child(i).occupiedytile == currentytile - 1 and players.get_child(l).get_child(i).occupiedxtile == currentxtile and not players.get_child(l).get_child(i).dead:
-					if e.canattack:
+					if e.canattack and players.get_child(l).get_child(i).attackable:
 						get_child(2).self_modulate = attackablearea
 						canmoveup = 2
 					else:
 						get_child(2).self_modulate = immoveablearea
 						canmoveup = 0
 				elif players.get_child(l).get_child(i).occupiedytile == currentytile + 1 and players.get_child(l).get_child(i).occupiedxtile == currentxtile and not players.get_child(l).get_child(i).dead:
-					if e.canattack:
+					if e.canattack and players.get_child(l).get_child(i).attackable:
 						get_child(3).self_modulate = attackablearea
 						canmovedown = 2
 					else:
@@ -167,16 +168,16 @@ func movement_update(): #Detects entities
 			#Makes the diagonal circles red if there is an enemy
 			if e.canattack:
 				for i in players.get_child(l).get_child_count():
-					if players.get_child(l).get_child(i).occupiedxtile == currentxtile - 1 and players.get_child(l).get_child(i).occupiedytile == currentytile - 1 and not players.get_child(l).get_child(i).dead:
+					if players.get_child(l).get_child(i).occupiedxtile == currentxtile - 1 and players.get_child(l).get_child(i).occupiedytile == currentytile - 1 and not players.get_child(l).get_child(i).dead and players.get_child(l).get_child(i).attackable:
 						get_child(4).self_modulate = attackablearea
 						canmoveupleft = 2
-					elif players.get_child(l).get_child(i).occupiedytile == currentytile + 1 and players.get_child(l).get_child(i).occupiedxtile == currentxtile + 1 and not players.get_child(l).get_child(i).dead:
+					elif players.get_child(l).get_child(i).occupiedytile == currentytile + 1 and players.get_child(l).get_child(i).occupiedxtile == currentxtile + 1 and not players.get_child(l).get_child(i).dead and players.get_child(l).get_child(i).attackable:
 						get_child(5).self_modulate = attackablearea
 						canmovedownright = 2
-					elif players.get_child(l).get_child(i).occupiedxtile == currentxtile + 1 and players.get_child(l).get_child(i).occupiedytile == currentytile - 1 and not players.get_child(l).get_child(i).dead:
+					elif players.get_child(l).get_child(i).occupiedxtile == currentxtile + 1 and players.get_child(l).get_child(i).occupiedytile == currentytile - 1 and not players.get_child(l).get_child(i).dead and players.get_child(l).get_child(i).attackable:
 						get_child(6).self_modulate = attackablearea
 						canmoveupright = 2
-					elif players.get_child(l).get_child(i).occupiedytile == currentytile + 1 and players.get_child(l).get_child(i).occupiedxtile == currentxtile - 1 and not players.get_child(l).get_child(i).dead:
+					elif players.get_child(l).get_child(i).occupiedytile == currentytile + 1 and players.get_child(l).get_child(i).occupiedxtile == currentxtile - 1 and not players.get_child(l).get_child(i).dead and players.get_child(l).get_child(i).attackable:
 						get_child(7).self_modulate = attackablearea
 						canmovedownleft = 2
 	

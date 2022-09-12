@@ -1,22 +1,20 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Entities/MovementCircles.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Antcestor.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/A.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Circle.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/W.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Entities/Troop.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/S.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Spacebar.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/D.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Shadow.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Entities/Parts/Circle.png" type="Texture" id=10]
 [ext_resource path="res://Entities/Highlight.gd" type="Script" id=11]
 
 [node name="Antcestor" type="Sprite" groups=[
 "Arena",
 ]]
 z_index = 2
-texture = ExtResource( 6 )
 script = ExtResource( 2 )
 
 [node name="MovementCircles" type="Node2D" parent="." groups=[
@@ -102,8 +100,10 @@ texture = ExtResource( 8 )
 [node name="WASDColorTween" type="Tween" parent="MovementCircles/WASDIcons"]
 
 [node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.478431 )
 self_modulate = Color( 1, 1, 1, 0.247059 )
-position = Vector2( 0, 32 )
+position = Vector2( 0, 24 )
+scale = Vector2( 1, 0.3 )
 z_index = 1
 z_as_relative = false
 texture = ExtResource( 10 )
@@ -125,6 +125,7 @@ wait_time = 0.25
 one_shot = true
 
 [node name="Highlight" type="Sprite" parent="."]
+visible = false
 z_index = 20
 script = ExtResource( 11 )
 

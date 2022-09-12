@@ -3,33 +3,45 @@ extends "res://Entities/AntcestorGyne.gd"
 
 
 func _ready():
-	self.texture = load("res://Sprites/Entities/GyneAlly.png")
-	$Highlight.texture = load("res://Sprites/Entities/GyneHighlight.png") #Assigns highlights's texture
+#	self.texture = load("res://Sprites/Entities/GyneAlly.png")
+#	$Highlight.texture = load("res://Sprites/Entities/GyneHighlight.png") #Assigns highlights's texture
+	self.texture = null
+	$Highlight.texture = null
 	
 	forager = load("res://Entities/AllyForager.tscn")
+	foragercost = 10
 	foragerincubationtime = 2
 	troop = load("res://Entities/AllyTroop.tscn")
+	troopcost = 20
 	troopincubationtime = 3
 	occupiedtile = arena.arenalength
+	
+	animationplayer = load("res://Entities/Animations/LasiusAnimations/AntmationsHDLasiusGyne.tscn")
+	antimation()
+	tilescale = 2
 
 
 func _input(_event):
 	if selected and moved == false: #Only if this entity is selected and can move
-		if Input.is_action_just_pressed("ui_left"):
+		if Input.is_action_just_pressed("ui_left") and ownallies.resources >= foragercost:
 			producing = "forager"
 			eggtimer += 1
 			moved = true
+			selected = false
 			$EggTimer.setup(foragerincubationtime)
+			ownallies.resources -= foragercost
 			get_tree().call_group("Arena", "arena_update")
 			
-		if Input.is_action_just_pressed("ui_right"):
+		elif Input.is_action_just_pressed("ui_right") and ownallies.resources >= troopcost:
 			producing = "troop"
 			eggtimer += 1
 			moved = true
+			selected = false
 			$EggTimer.setup(troopincubationtime)
+			ownallies.resources -= troopcost
 			get_tree().call_group("Arena", "arena_update")
 			
-		if Input.is_action_just_pressed("ui_cancel"): #Deselect this entity and select another
+		elif Input.is_action_just_pressed("ui_cancel"): #Deselect this entity and select another
 			for i in ownallies.get_child_count(): #Only deselects this entity if there are others to select
 				if ownallies.get_child(i).moveable:
 					if not ownallies.get_child(i).moved:
@@ -37,10 +49,32 @@ func _input(_event):
 							selected = false
 							skipthisentity = true
 							get_tree().call_group("Arena", "arena_update")
+		elif Input.is_action_just_pressed("delete"): #Skips turn
+#			if ownallies.resources < foragercost and ownallies.resources < troopcost:
+				moved = true
+				selected = false
+				get_tree().call_group("Arena", "arena_update")
 
 
 func do():
-	selected = true
+	if not dead:
+		selected = true
+
+
+func antimation():
+	animation = "LasiusGyneIdle"
+	$AntmationsHD/AntimationPlayer.start_anim(isAI, animation)
+
+
+#	if ownallies.resources < foragercost and ownallies.resources < troopcost:
+#		for i in ownallies.get_child_count(): #Only deselects this entity if there are others to select
+#			if ownallies.get_child(i).moveable:
+#				if not ownallies.get_child(i).moved:
+#					if not ownallies.get_child(i) == self:
+#						return
+#		moved = true
+#		selected = false
+#		get_tree().call_group("Arena", "arena_update")
 
 
 #func _process(_delta):

@@ -13,28 +13,33 @@ func do():
 #	$MovementCircles.detect_obstacles()
 #	$MovementCircles.movement_update()
 #	selected = true
-	moved = true
-	selected = false
-	$MovementCircles.showcircles = true
-	$WaitTimer.start()
-	yield($WaitTimer, "timeout")
+	thinking = true
+	yield(get_tree(), "idle_frame") #Wait one frame
 	
-	
-	AI()
-	update_occupied_tile()
-	
-	get_tree().call_group("Arena", "arena_update") #Updates the arena to let everyone else know where this entity is
-	
-	var tween = $MovementTween
-	tween.interpolate_property(self, "position",
-	position, arena.tiles[occupiedtile], 0.5,
-	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	tween.start()
-	
-	
-	$WaitTimer.start()
-	yield($WaitTimer, "timeout")
-#	get_tree().call_group("Arena", "arena_update")
+	if not moved:
+		moved = true
+		selected = false
+		$MovementCircles.showcircles = true
+		$WaitTimer.start()
+		yield($WaitTimer, "timeout")
+		
+		
+		AI()
+		update_occupied_tile()
+		
+		thinking = false
+		get_tree().call_group("Arena", "arena_update") #Updates the arena to let everyone else know where this entity is
+		
+		var tween = $MovementTween
+		tween.interpolate_property(self, "position",
+		position, arena.tiles[occupiedtile], 0.5,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.start()
+		
+		
+		$WaitTimer.start()
+		yield($WaitTimer, "timeout")
+	#	get_tree().call_group("Arena", "arena_update")
 
 
 func is_AI():

@@ -2,12 +2,14 @@
 
 [ext_resource path="res://Entities/AntcestorGyne.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Entities/AllyGyne.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Entities/GyneAlly.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Animations/LasiusAnimations/AntmationsHDLasiusGyne.tscn" type="PackedScene" id=4]
 
 [node name="AllyGyne" instance=ExtResource( 1 )]
-texture = ExtResource( 3 )
 script = ExtResource( 2 )
 
 [node name="Highlight" parent="." index="3" groups=[
 "Arena",
 ]]
+
+[node name="AntmationsHD" parent="." index="7" instance=ExtResource( 4 )]
+z_index = 3

@@ -11,24 +11,36 @@ var occupiedxtile = 0 #The X tile this entity is occupying
 var occupiedytile = 0 #The Y tile this entity is occupying
 #Entity variables
 var health = 40
+var strength = 0
 var dead = false
+var attackable = true
 var isAI = false
+var animation
+var animationplayer
+var tilescale #How much space this entity takes up on the tile: 0 = XS, 1 = S, 2 = M...
 
 var WASDiconsarevisible = false
 var skipthisentity = false
 var moved = false
 var moveable = true #Can do an action f.eks. move
 var selected = false
+var thinking = false
 #Gyne variables
 var eggtimer = 0 #How many turns this entity has been in production
 var forager #Which entity this entity produces when producing a forager
+var foragercost #How many resources it takes to produce a forager
 var foragerincubationtime = 2 #The amount of turns a forager needs to be produced
+
 var troop #Which entity this entity produces when producing a troop
+var troopcost #How many resources it takes to produce a troop
 var troopincubationtime = 3 #The amount of turns a troop needs to be produced
+
 var producing = "null" #Which entity this entity is producing
 var backlog = false #If this gyne has an entity on top, it will wait until it produces an entity
 var shakeint = 0 #How far into the shake animation it is
 var shakedistance = 16
+var Aiconcolor = Color(0.3,0.3,1,0.75)
+var Diconcolor = Color(0.3,0.3,1,0.75)
 
 
 func arena_ready():
@@ -79,6 +91,7 @@ func turn_update():
 		
 		if not producing == "null": #If producing something
 			moved = true
+			selected = false
 			get_tree().call_group("Arena", "arena_update")
 	
 	
@@ -109,6 +122,7 @@ func arena_update():
 			$EggTimer.reset()
 			producing = "null"
 			eggtimer = 0
+			moved = false
 			backlog = false
 		
 		elif producing == "troop": #If this gyne is producing a troop
@@ -116,15 +130,31 @@ func arena_update():
 			$EggTimer.reset()
 			producing = "null"
 			eggtimer = 0
+			moved = false
 			backlog = false
-
 	
+	
+	if ownallies.resources < foragercost:
+		Aiconcolor = Color(0.5,0.5,0.5,0.75)
+	elif Aiconcolor == Color(0.5,0.5,0.5,0.75):
+		Aiconcolor = Color(0.3,0.3,1,0.75)
+	
+	if ownallies.resources < troopcost:
+		Diconcolor = Color(0.5,0.5,0.5,0.75)
+	else:
+		Diconcolor = Color(0.3,0.3,1,0.75)
 
 
 func damage(damage, aggressor): #Takes damage
 	if damage >= health:
 		dead = true
-		aggressor.conquer(occupiedtile)
+		
+		for i in 2:
+			$WASDIcons.get_child(i).modulate = Color(0.3,0.3,1,0)
+		get_node("Highlight").visible = false
+		
+		if not aggressor == null:
+			aggressor.conquer(occupiedtile)
 	health -= damage
 	$AnimationTimer.start()
 
@@ -156,6 +186,7 @@ func _on_AnimationTimer_timeout(): #Takes damage and animation
 		
 		get_tree().call_group("Arena", "arena_update")
 		queue_free()
+#		get_parent().queue_free() #Removes this category
 
 
 func shake(destination, easetype):
@@ -199,14 +230,28 @@ func _process(_delta):
 		get_node("Highlight").visible = false
 		WASDiconsarevisible = false
 	elif not WASDiconsarevisible:
-		for i in 2:
-			#$WASDIcons.get_child(i).modulate = Color(0.3,0.3,1,1)
-			var colortween = $WASDIcons/ColorTween
-			
-			colortween.interpolate_property($WASDIcons.get_child(i), "modulate",
-			$WASDIcons.get_child(i).modulate, Color(0.3,0.3,1,0.75), 0.25,
-			colortween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-			colortween.start()
+#		for i in 2:
+#			#$WASDIcons.get_child(i).modulate = Color(0.3,0.3,1,1)
+#			var colortween = $WASDIcons/ColorTween
+#			
+#			colortween.interpolate_property($WASDIcons.get_child(i), "modulate",
+#			$WASDIcons.get_child(i).modulate, WASDiconcolor, 0.25,
+#			colortween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+#			colortween.start()
+		
+		var colortween = $WASDIcons/ColorTween
+		
+		colortween.interpolate_property($WASDIcons.get_child(0), "modulate",
+		$WASDIcons.get_child(0).modulate, Aiconcolor, 0.25,
+		colortween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		colortween.start()
+		
+		colortween.interpolate_property($WASDIcons.get_child(1), "modulate",
+		$WASDIcons.get_child(1).modulate, Diconcolor, 0.25,
+		colortween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		colortween.start()
+		
+		
 		WASDiconsarevisible = true
 		get_node("Highlight").visible = true
 
@@ -218,3 +263,6 @@ func AI():
 func do():
 	pass
 
+
+func antimation():
+	pass

@@ -2,11 +2,10 @@
 
 [ext_resource path="res://Entities/AntcestorGyne.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Entities/EnemyGyne.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Entities/GyneEnemy.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Animations/LasiusAnimations/AntmationsHDLasiusGyne.tscn" type="PackedScene" id=4]
 
 [node name="EnemyGyne" instance=ExtResource( 1 )]
 scale = Vector2( -1, 1 )
-texture = ExtResource( 3 )
 script = ExtResource( 2 )
 
 [node name="WASDIcons" parent="." index="0"]
@@ -17,3 +16,5 @@ one_shot = true
 
 [node name="EggTimer" parent="." index="7"]
 position = Vector2( 64, -64 )
+
+[node name="AntmationsHD" parent="." index="8" instance=ExtResource( 4 )]

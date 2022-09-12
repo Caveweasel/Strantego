@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Entities/Animations/Antimations.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Animations/IdleForager.tres" type="Animation" id=2]
+[ext_resource path="res://Sprites/Entities/Parts/TroopHead.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Entities/Parts/ForagerAntennae.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Entities/Parts/TroopThorax.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Entities/Parts/BlueGaster.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Entities/Forager.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Entities/Parts/Legs.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "IdleTroop"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Thorax/Head:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Thorax/Gaster:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 4.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Thorax:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Thorax:rotation_degrees")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -2.0, 0.0 ]
+}
+
+[node name="Antimations" type="Node2D"]
+
+[node name="Thorax" type="Sprite" parent="."]
+rotation = -0.00682717
+texture = ExtResource( 5 )
+offset = Vector2( -4, -4 )
+
+[node name="Head" type="Sprite" parent="Thorax"]
+position = Vector2( 16, -16 )
+z_index = 1
+texture = ExtResource( 3 )
+offset = Vector2( 16, 8 )
+
+[node name="Antennae" type="Sprite" parent="Thorax/Head"]
+position = Vector2( 12, -12 )
+texture = ExtResource( 4 )
+offset = Vector2( 4, 0 )
+
+[node name="Gaster" type="Sprite" parent="Thorax"]
+position = Vector2( -20, 0 )
+z_index = -1
+texture = ExtResource( 6 )
+offset = Vector2( -16, 0 )
+
+[node name="Legs" type="Sprite" parent="."]
+position = Vector2( -4, 8 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, 24 )
+
+[node name="Test" type="Sprite" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.368627 )
+texture = ExtResource( 7 )
+
+[node name="AntimationPlayer" type="AnimationPlayer" parent="."]
+anims/IdleForager = ExtResource( 2 )
+anims/IdleTroop = SubResource( 1 )
+script = ExtResource( 1 )
