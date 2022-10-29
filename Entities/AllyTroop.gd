@@ -10,6 +10,9 @@ func constructor():
 	animationplayer = load("res://Entities/Animations/AntimationsHD.tscn")
 	tilescale = 1
 
+func set_up_shadow():
+	shadow = get_node("AntmationsHD/Shadow")
+
 #func _ready():
 ##	animationplayer = $AntmationsHD/AntimationPlayer.start_anim(true, "LasiusTroopIdle")
 #	antimation()

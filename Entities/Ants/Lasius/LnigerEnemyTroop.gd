@@ -1,5 +1,4 @@
-extends "res://Entities/EnemyAntcestor.gd"
-
+extends "res://Entities/EnemyTroop.gd"
 
 func constructor():
 #	self.texture = load("res://Sprites/Entities/TroopEnemy.png") #Assigns sprite's texture
@@ -11,11 +10,6 @@ func constructor():
 	strength = 20
 	animationplayer = load("res://Entities/Animations/AntimationsHD.tscn")
 	tilescale = 1
-
-
-func set_up_shadow():
-	shadow = get_node("AntmationsHD/Shadow")
-
 
 func antimation():
 	animation = "LasiusTroopIdle"

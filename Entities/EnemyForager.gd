@@ -1,17 +1,25 @@
 extends "res://Entities/EnemyAntcestor.gd"
 
+var efficiency = 1
+
 
 func constructor():
-	self.texture = load("res://Sprites/Entities/ForagerEnemy.png") #Assigns sprite's texture
-	$Highlight.color1 = Color(1,0.15,0.15,1)
-	$Highlight.color2 = Color(1,0.25,0.25,1)
-	$Highlight.texture = load("res://Sprites/Entities/ForagerHighlight.png") #Assigns highlights's texture
+	#self.texture = load("res://Sprites/Entities/ForagerEnemy.png") #Assigns sprite's texture
+	self.texture = null
+#	$Highlight.color1 = Color(1,0.15,0.15,1)
+#	$Highlight.color2 = Color(1,0.25,0.25,1)
+#	$Highlight.texture = load("res://Sprites/Entities/ForagerHighlight.png") #Assigns highlights's texture
 	health = 20
-	strength = 0
-	canattack = false
+	strength = 5
+	efficiency = 0.5
 	hasspacebarability = true
+	isforager = true
 	animationplayer = load("res://Entities/Animations/AntimationsHD.tscn")
 	tilescale = 1
+
+
+func set_up_shadow():
+	shadow = get_node("AntmationsHD/Shadow")
 
 
 func spacebar_ability():
@@ -19,7 +27,7 @@ func spacebar_ability():
 	
 	for i in resources.get_child_count():
 		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile:
-			ownallies.resources += resources.get_child(i).resources
+			ownallies.resources += resources.get_child(i).resources * efficiency
 	
 #	ownallies.resources += 1
 	moved = true
@@ -41,6 +49,27 @@ func can_use_spacebar_ability():
 	
 	
 	return false
+
+
+func get_target():
+	#var allygyne = players.get_child(1).get_node("Gyne")
+	var selectedresource = resources.get_child(0)
+	var resourceoccupied = false
+	
+	for b in resources.get_child_count(): #For every resource
+		#if gyne.global_position.distance_to(resources.get_child(b).global_position) <= allygyne.global_position.distance_to(resources.get_child(b).global_position): #If it is closer to it's own queen than the player's queen
+			if global_position.distance_to(resources.get_child(b).global_position) < selectedresource.global_position.distance_to(resources.get_child(b).global_position): #If the distance to the resource is lower than the distance to the selected resource
+				resourceoccupied = false
+				for l in players.get_child_count(): #If there is another entity on the resource, don't go to it
+					for i in players.get_child(l).get_child_count():
+						if players.get_child(l).get_child(i).occupiedtile == resources.get_child(b).occupiedtile:
+							resourceoccupied = true
+				
+				if not resourceoccupied: #replace the selected resource
+					selectedresource = resources.get_child(b)
+	
+	path = arena.get_node("TileMap").get_astar_path_avoiding_obstacles(self.global_position - Vector2(64,64), selectedresource.global_position - Vector2(64,64))
+
 
 
 func antimation():

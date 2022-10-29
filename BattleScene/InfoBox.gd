@@ -1,5 +1,8 @@
 extends Control
 
+onready var arena = get_node("/root/BattleSceneTest")
+onready var players = get_node("/root/BattleSceneTest/Players")
+
 var selectedentity
 
 var tilescale1 = load("res://Sprites/Level/TileScale1.png")
@@ -38,11 +41,21 @@ func close():
 	$Health.visible = false
 	$Attack.visible = false
 
-
 func _on_XButton_pressed():
 	close()
 
 
-func arena_update():
-	pass
+func _input(_event):
+	if Input.is_action_just_pressed("click"):
+		var mousepos = get_global_mouse_position()
+		if mousepos.y > -64 and mousepos.y < arena.arenawidth * 128 - 64 and mousepos.x > -64 and mousepos.x < arena.arenalength * 128 - 64: #If the click is within the arena
+			mousepos.y = stepify(mousepos.y, 128)
+			mousepos.x = stepify(mousepos.x, 128)
+#			print(arena.tiles.find(mousepos))
+			for l in players.get_child_count():
+				if not players.get_child(l) == players.get_child(0):
+					for i in players.get_child(l).get_child_count():
+						if players.get_child(l).get_child(i).occupiedtile == arena.tiles.find(mousepos) and not players.get_child(l).get_child(i).dead:
+							refresh(players.get_child(l).get_child(i))
+							return
 

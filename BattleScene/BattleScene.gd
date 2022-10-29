@@ -2,8 +2,8 @@ extends Node2D
 #Global variables
 onready var players = $Players
 #Arena variables
-var arenalength = 5 #How long the arena is in tiles
-var arenawidth = 3 #How wide the arena is in tiles
+export var arenalength = 5 #How long the arena is in tiles
+export var arenawidth = 3 #How wide the arena is in tiles
 var tiles = [] #An array of tiles and their position
 #var arenabiome #Which biome this arena is in
 var turn #Whose turn it is
@@ -12,11 +12,39 @@ var turnnumber = 0 #Which turn it is
 var selectedcolonynumber = 0 #Which number colony is the currently selected one
 var selectedcolony #Which colony is the currently selected one
 
+#class TileSorter:
+#	static func sort_tile_values(a, b):
+#		if a[0] < b[0]:
+#			return true
+#		return false
 
 func _ready():
+#	var a = [[1, "left"], [4, "down"], [2, "up"]]
+#	a.sort_custom(TileSorter, "sort_tile_values")
+#	print(a[0])
+#	print(a[1])
+#	print(a[2])
 	#Assigns cameras position:
+#	$Camera.position.x = float(arenalength) / 2 * 128 - 64
+#	$Camera.position.y = float(arenawidth) / 2 * 128 + 64
+	var zoom = 0
+	print(arenalength*0.42)
+	if (arenawidth-5)*0.16 > (arenalength-13)*0.075:
+		if arenawidth > 5:
+			zoom = (arenawidth-5)*0.16
+			$Camera.zoom.y = 1+zoom
+			$Camera.zoom.x = 1+zoom
+			$Camera.scale.y = 1+zoom
+			$Camera.scale.x = 1+zoom
+	else:
+		if arenalength > 13:
+			zoom = (arenalength-13)*0.075
+			$Camera.zoom.y = 1+zoom
+			$Camera.zoom.x = 1+zoom
+			$Camera.scale.y = 1+zoom
+			$Camera.scale.x = 1+zoom
 	$Camera.position.x = float(arenalength) / 2 * 128 - 64
-	$Camera.position.y = float(arenawidth) / 2 * 128 + 64
+	$Camera.position.y =float(arenawidth) / 2 * 128 - 64 + (137*(1+zoom))
 #	arenabiome = plains()
 	
 	selectedcolony = players.get_child(selectedcolonynumber)
@@ -48,7 +76,7 @@ func arena_update():
 func _on_NextTurnButton_pressed():
 	
 	#selectedmover = 0
-	$NextTurnButton.disabled = true
+	$Camera/GUI/NextTurnButton.disabled = true
 	
 	
 	if selectedcolonynumber >= players.get_child_count()-1:
@@ -107,7 +135,7 @@ func select_movers():
 		
 		
 		#If no entity can move enable the NextTurnButton
-		$NextTurnButton.disabled = false
+		$Camera/GUI/NextTurnButton.disabled = false
 		$Camera/GUI/KillButton.disabled = true
 		$Camera/GUI/InfoBox.close()
 #	else:
@@ -131,6 +159,10 @@ func _on_KillButton_pressed():
 #				selectedcolony.get_child(i).damage(9999, null)
 				selectedcolony.get_child(i).dead = true
 				selectedcolony.get_child(i)._on_AnimationTimer_timeout()
+
+
+func _process(_delta):
+	$Camera/GUI/FPSCounter.text = "FPS: " + str(Engine.get_frames_per_second())
 
 
 #func _process(_delta):

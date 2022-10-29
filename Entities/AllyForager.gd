@@ -1,5 +1,7 @@
 extends "res://Entities/Mover.gd"
 
+var efficiency = 1
+
 
 func constructor():
 	#self.texture = load("res://Sprites/Entities/ForagerAlly.png") #Assigns sprite's texture
@@ -7,11 +9,16 @@ func constructor():
 	
 	#$Highlight.texture = load("res://Sprites/Entities/ForagerHighlight.png") #Assigns highlights's texture
 	health = 20
-	strength = 0
+	strength = 5
+	efficiency = 0.5
 	canattack = false
 	hasspacebarability = true
 	animationplayer = load("res://Entities/Animations/AntimationsHD.tscn")
 	tilescale = 1
+
+
+func set_up_shadow():
+	shadow = get_node("AntmationsHD/Shadow")
 
 #func _ready():
 ##	animation = $AntmationsHD/AntimationPlayer.start_anim(true, "LasiusTroopIdle")
@@ -23,7 +30,7 @@ func spacebar_ability():
 	
 	for i in resources.get_child_count():
 		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile:
-			ownallies.resources += resources.get_child(i).resources
+			ownallies.resources += resources.get_child(i).resources * efficiency
 	
 #	ownallies.resources += 1
 	moved = true

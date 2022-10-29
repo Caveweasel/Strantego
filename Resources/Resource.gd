@@ -14,5 +14,5 @@ func arena_ready():
 	occupiedtile = arena.tiles.find(position)
 #	position = arena.tiles[occupiedtile]
 	occupiedytile = ceil(float(occupiedtile / arena.arenalength)) #Finds out which Y tile this entity is occupying
-	occupiedxtile = ceil(float(occupiedtile - occupiedytile * 5)) #Finds out which X tile this entity is occupying
+	occupiedxtile = ceil(float(occupiedtile - occupiedytile * arena.arenalength)) #Finds out which X tile this entity is occupying
 

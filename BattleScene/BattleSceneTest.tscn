@@ -1,6 +1,6 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
-[ext_resource path="res://Sprites/Level/Earth.png" type="Texture" id=1]
+[ext_resource path="res://BattleScene/EarthTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Resources/Resource.tscn" type="PackedScene" id=2]
 [ext_resource path="res://BattleScene/BattleScene.gd" type="Script" id=3]
 [ext_resource path="res://Entities/Obstacles/Rock.tscn" type="PackedScene" id=4]
@@ -25,54 +25,17 @@
 [ext_resource path="res://BattleScene/Anim.gd" type="Script" id=23]
 [ext_resource path="res://Sprites/Level/Heart.png" type="Texture" id=24]
 [ext_resource path="res://Sprites/Level/Sword.png" type="Texture" id=25]
+[ext_resource path="res://BattleScene/AstarTileMap.gd" type="Script" id=26]
+[ext_resource path="res://BattleScene/AstarDebug.gd" type="Script" id=27]
 
-[sub_resource type="TileSet" id=1]
-0/name = "Earth.png 0"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 512, 384 )
-0/tile_mode = 1
-0/autotile/bitmask_mode = 0
-0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 69, Vector2( 0, 1 ), 65, Vector2( 0, 2 ), 321, Vector2( 1, 0 ), 5, Vector2( 1, 2 ), 320, Vector2( 2, 0 ), 261, Vector2( 2, 1 ), 260, Vector2( 2, 2 ), 324, Vector2( 3, 0 ), 325, Vector2( 3, 1 ), 325, Vector2( 3, 2 ), 325 ]
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 128, 128 )
-0/autotile/spacing = 0
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "Earth.png 1"
-1/texture = ExtResource( 1 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 128, 128, 128, 128 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
+[sub_resource type="ShortCut" id=1]
 
-[sub_resource type="ShortCut" id=2]
-
-[sub_resource type="InputEventAction" id=3]
+[sub_resource type="InputEventAction" id=2]
 action = "ui_select"
 pressed = true
 
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
 [node name="BattleSceneTest" type="Node2D" groups=[
 "Arena",
@@ -83,10 +46,18 @@ script = ExtResource( 3 )
 "Arena",
 ]]
 position = Vector2( -64, -64 )
-tile_set = SubResource( 1 )
+tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 128 )
 format = 1
-tile_data = PoolIntArray( -65541, 0, 65539, -65540, 0, 65539, -65539, 0, 65539, -65538, 0, 65539, -65537, 0, 65539, -131072, 0, 65539, -131071, 0, 65539, -131070, 0, 65539, -131069, 0, 65539, -131068, 0, 65539, -131067, 0, 65539, -131066, 0, 65539, -131065, 0, 65539, -131064, 0, 65539, -131063, 0, 65539, -5, 0, 65539, -4, 0, 131075, -3, 0, 131075, -2, 0, 3, -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 2, -65530, 0, 131075, -65529, 0, 131075, -65528, 0, 3, -65527, 0, 65539, 65531, 0, 65539, 65532, 0, 3, 65533, 0, 65539, 65534, 0, 65539, 65535, 0, 65536, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 0, 65538, 6, 0, 65539, 7, 0, 65539, 8, 0, 3, 9, 0, 65539, 131067, 0, 65539, 131068, 0, 65539, 131069, 0, 65539, 131070, 0, 131075, 131071, 0, 65536, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 65541, 0, 65538, 65542, 0, 65539, 65543, 0, 131075, 65544, 0, 3, 65545, 0, 65539, 196603, 0, 65539, 196604, 0, 65539, 196605, 0, 131075, 196606, 0, 131075, 196607, 0, 65536, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0, 131077, 0, 65538, 131078, 0, 3, 131079, 0, 65539, 131080, 0, 3, 131081, 0, 65539, 262139, 0, 65539, 262140, 0, 65539, 262141, 0, 65539, 262142, 0, 65539, 262143, 0, 131072, 196608, 0, 131073, 196609, 0, 131073, 196610, 0, 131073, 196611, 0, 131073, 196612, 0, 131073, 196613, 0, 131074, 196614, 0, 3, 196615, 0, 131075, 196616, 0, 3, 196617, 0, 65539, 327675, 0, 65539, 327676, 0, 65539, 327677, 0, 65539, 327678, 0, 65539, 327679, 0, 65539, 262144, 0, 65539, 262145, 0, 65539, 262146, 0, 65539, 262147, 0, 65539, 262148, 0, 65539, 262149, 0, 65539, 262150, 0, 65539, 262151, 0, 65539, 262152, 0, 65539, 262153, 0, 65539 )
+tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 1, 0, 131076, 1, 0 )
+script = ExtResource( 26 )
+
+[node name="Grass" type="TileMap" parent="."]
+position = Vector2( -64, -64 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( -65541, 0, 3, -65540, 0, 3, -65539, 0, 3, -65538, 0, 3, -65537, 0, 3, -131072, 0, 3, -131071, 0, 3, -131070, 0, 3, -131069, 0, 3, -131068, 0, 3, -131067, 0, 3, -131066, 0, 3, -131065, 0, 3, -131064, 0, 3, -131063, 0, 65539, -5, 0, 3, -4, 0, 3, -3, 0, 3, -2, 0, 3, -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 2, -65530, 0, 131075, -65529, 0, 131075, -65528, 0, 65539, -65527, 0, 65539, 65531, 0, 3, 65532, 0, 3, 65533, 0, 3, 65534, 0, 3, 65535, 0, 65536, 5, 0, 65538, 6, 0, 3, 7, 0, 3, 8, 0, 65539, 9, 0, 65539, 131067, 0, 3, 131068, 0, 3, 131069, 0, 3, 131070, 0, 3, 131071, 0, 65536, 65541, 0, 65538, 65542, 0, 3, 65543, 0, 131075, 65544, 0, 65539, 65545, 0, 65539, 196603, 0, 3, 196604, 0, 3, 196605, 0, 3, 196606, 0, 3, 196607, 0, 65536, 131077, 0, 65538, 131078, 0, 65539, 131079, 0, 65539, 131080, 0, 65539, 131081, 0, 65539, 262139, 0, 3, 262140, 0, 3, 262141, 0, 3, 262142, 0, 3, 262143, 0, 131072, 196608, 0, 131073, 196609, 0, 131073, 196610, 0, 131073, 196611, 0, 131073, 196612, 0, 131073, 196613, 0, 131074, 196614, 0, 3, 196615, 0, 131075, 196616, 0, 65539, 196617, 0, 65539, 327675, 0, 65539, 327676, 0, 65539, 327677, 0, 65539, 327678, 0, 65539, 327679, 0, 65539, 262144, 0, 65539, 262145, 0, 65539, 262146, 0, 65539, 262147, 0, 65539, 262148, 0, 65539, 262149, 0, 65539, 262150, 0, 65539, 262151, 0, 65539, 262152, 0, 65539, 262153, 0, 65539 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 256, 256 )
@@ -129,7 +100,7 @@ margin_left = 86.372
 margin_top = 57.5599
 margin_right = 214.372
 margin_bottom = 209.56
-shortcut = SubResource( 2 )
+shortcut = SubResource( 1 )
 texture_normal = ExtResource( 17 )
 texture_pressed = ExtResource( 19 )
 texture_disabled = ExtResource( 19 )
@@ -168,6 +139,21 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="NextTurnButton" type="TextureButton" parent="Camera/GUI"]
+margin_left = 655.158
+margin_top = 16.0
+margin_right = 1265.16
+margin_bottom = 248.0
+keep_pressed_outside = true
+shortcut = SubResource( 3 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+texture_disabled = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="InfoBox" type="Control" parent="Camera/GUI" groups=[
 "Arena",
 ]]
@@ -186,7 +172,6 @@ margin_top = 10.0
 margin_right = 40.0
 margin_bottom = 38.0
 texture_normal = ExtResource( 20 )
-texture_pressed = ExtResource( 21 )
 texture_disabled = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -247,17 +232,24 @@ margin_bottom = 14.0
 texture = ExtResource( 25 )
 expand = true
 
-[node name="NextTurnButton" type="TextureButton" parent="."]
-margin_left = -49.0
-margin_top = 540.0
-margin_right = 561.0
-margin_bottom = 772.0
-keep_pressed_outside = true
-shortcut = SubResource( 4 )
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 6 )
-texture_disabled = ExtResource( 6 )
-expand = true
+[node name="VersionLabel" type="Label" parent="Camera/GUI"]
+margin_left = 8.15802
+margin_top = -800.0
+margin_right = 87.158
+margin_bottom = -786.0
+rect_scale = Vector2( 2, 2 )
+text = "Alpha v0.9.0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPSCounter" type="Label" parent="Camera/GUI"]
+margin_left = 8.15796
+margin_top = -764.0
+margin_right = 87.158
+margin_bottom = -750.0
+rect_scale = Vector2( 2, 2 )
+text = "FPS: 60"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -283,16 +275,24 @@ __meta__ = {
 [node name="Rock" parent="Players/Obstacles" instance=ExtResource( 4 )]
 position = Vector2( 128, 256 )
 
+[node name="Rock2" parent="Players/Obstacles" instance=ExtResource( 4 )]
+position = Vector2( 384, 128 )
+
+[node name="Rock3" parent="Players/Obstacles" instance=ExtResource( 4 )]
+position = Vector2( 256, 0 )
+
 [node name="Allies" type="Node" parent="Players"]
 script = ExtResource( 9 )
 
 [node name="Gyne" parent="Players/Allies" instance=ExtResource( 8 )]
+position = Vector2( 0, 128 )
 z_index = 0
 
 [node name="AI1" type="Node" parent="Players"]
 script = ExtResource( 9 )
 
 [node name="Gyne" parent="Players/AI1" instance=ExtResource( 11 )]
+position = Vector2( 512, 128 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 
@@ -307,18 +307,20 @@ texture = ExtResource( 10 )
 [node name="Resource2" parent="Resources" instance=ExtResource( 2 )]
 texture = ExtResource( 10 )
 
+[node name="Resource3" parent="Resources" instance=ExtResource( 2 )]
+position = Vector2( 384, 0 )
+texture = ExtResource( 10 )
+
 [node name="Particles" type="Node" parent="."]
 
-[node name="Label" type="Label" parent="."]
-margin_left = -696.0
-margin_top = -276.0
-margin_right = -624.0
-margin_bottom = -262.0
-rect_scale = Vector2( 2, 2 )
-text = "Alpha v1.0.0"
+[node name="AstarDebug" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="Camera/GUI/KillButton" to="." method="_on_KillButton_pressed"]
+[connection signal="pressed" from="Camera/GUI/NextTurnButton" to="." method="_on_NextTurnButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/InfoBox/XButton" to="Camera/GUI/InfoBox" method="_on_XButton_pressed"]
-[connection signal="pressed" from="NextTurnButton" to="." method="_on_NextTurnButton_pressed"]

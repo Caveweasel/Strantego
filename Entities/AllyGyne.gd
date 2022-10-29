@@ -16,6 +16,8 @@ func _ready():
 	troopincubationtime = 3
 	occupiedtile = arena.arenalength
 	
+	shadow = get_node("AntmationsHD/Shadow")
+	
 	animationplayer = load("res://Entities/Animations/LasiusAnimations/AntmationsHDLasiusGyne.tscn")
 	antimation()
 	tilescale = 2

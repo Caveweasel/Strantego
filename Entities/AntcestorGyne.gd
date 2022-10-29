@@ -1,11 +1,13 @@
 extends Sprite
 
 #Global variables
+var shadow
 onready var e = get_parent()
 onready var players = get_node("/root/BattleSceneTest/Players")
 onready var arena = get_node("/root/BattleSceneTest")
 onready var ownallies = get_parent() #Which entities it is allies with
 #Object variables
+var value = 1000
 var occupiedtile = 4 #The tile this entity is occupying
 var occupiedxtile = 0 #The X tile this entity is occupying
 var occupiedytile = 0 #The Y tile this entity is occupying
@@ -44,9 +46,10 @@ var Diconcolor = Color(0.3,0.3,1,0.75)
 
 
 func arena_ready():
-	position = arena.tiles[occupiedtile]
+	#position = arena.tiles[occupiedtile]
+	occupiedtile = arena.tiles.find(position)
 	occupiedytile = ceil(float(occupiedtile / arena.arenalength)) #Finds out which Y tile this entity is occupying
-	occupiedxtile = ceil(float(occupiedtile - occupiedytile * 5)) #Finds out which X tile this entity is occupying
+	occupiedxtile = ceil(float(occupiedtile - occupiedytile * arena.arenalength)) #Finds out which X tile this entity is occupying
 
 
 func turn_update():
@@ -173,9 +176,9 @@ func _on_AnimationTimer_timeout(): #Takes damage and animation
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		visibilitytween.start()
 		
-		var shadowtween = $Shadow/ShadowTween
-		shadowtween.interpolate_property($Shadow, "self_modulate",
-		$Shadow.self_modulate, Color(1,1,1,0), 0.25,
+		var shadowtween = shadow.get_node("ShadowTween")
+		shadowtween.interpolate_property(shadow, "self_modulate",
+		shadow.self_modulate, Color(1,1,1,0), 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		shadowtween.start()
 		

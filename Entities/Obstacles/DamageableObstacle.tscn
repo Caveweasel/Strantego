@@ -5,6 +5,7 @@
 
 [node name="DamageableObstacle" type="Sprite" groups=[
 "Arena",
+"Obstacles",
 ]]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

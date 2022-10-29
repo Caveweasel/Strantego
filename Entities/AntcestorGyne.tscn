@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Entities/AntcestorGyne.gd" type="Script" id=2]
-[ext_resource path="res://Sprites/Entities/Parts/Circle.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Circle.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/A.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/D.png" type="Texture" id=6]
@@ -38,17 +37,6 @@ texture = ExtResource( 4 )
 [node name="AnimationTimer" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
-
-[node name="Shadow" type="Sprite" parent="."]
-modulate = Color( 0, 0, 0, 0.482353 )
-self_modulate = Color( 1, 1, 1, 0.247059 )
-position = Vector2( 4, 24 )
-scale = Vector2( 1, 0.4 )
-z_index = 1
-z_as_relative = false
-texture = ExtResource( 3 )
-
-[node name="ShadowTween" type="Tween" parent="Shadow"]
 
 [node name="Highlight" type="Sprite" parent="."]
 z_index = 20

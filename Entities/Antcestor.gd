@@ -3,11 +3,13 @@ extends Sprite
 #Global variables
 #onready var gyne = get_parent().get_node("Gyne")
 var gyne
+var shadow
 onready var arena = get_node("/root/BattleSceneTest")
 onready var players = get_node("/root/BattleSceneTest/Players")
 onready var resources = get_node("/root/BattleSceneTest/Resources")
 onready var ownallies = get_parent()
 #Object variables
+var value = 25
 var occupiedtile = 4 #The tile this entity is occupying
 var occupiedxtile = 0 #The X tile this entity is occupying
 var occupiedytile = 0 #The Y tile this entity is occupying
@@ -50,7 +52,7 @@ func _init():
 	self_modulate = Color(1,1,1,0)
 	if strength == 0:
 		canattack = false
-	constructor()
+#	constructor()
 
 
 func _ready():
@@ -60,12 +62,16 @@ func _ready():
 		occupiedtile = gyne.occupiedtile
 	position = arena.tiles[occupiedtile]
 	update_occupied_tile()
-	$Shadow.self_modulate = Color(1,1,1,0)
 	if not hasspacebarability:
 		$MovementCircles/WASDIcons/Spacebar.self_modulate = Color(0,0,0,0)
 	is_AI()
 	antimation()
+	set_up_shadow()
+	constructor()
 	$MovementCircles.arena_update()
+
+func set_up_shadow():
+	pass
 
 
 func arena_ready():
@@ -91,7 +97,7 @@ func arena_update():
 		
 		if occupiedtile == gyne.occupiedtile and not selected and moved: #Hides itself if it is behind the gyne
 			self_modulate = Color(1,1,1,0)
-			$Shadow.self_modulate = Color(1,1,1,0)
+			shadow.self_modulate = Color(1,1,1,0)
 	
 		elif not occupiedtile == gyne.occupiedtile and self_modulate == Color(1,1,1,0): #Shows itself when moving away from the gyne
 			var visibilitytween = $VisibilityTween
@@ -100,9 +106,9 @@ func arena_update():
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			visibilitytween.start()
 			
-			var shadowtween = $Shadow/ShadowTween
-			shadowtween.interpolate_property($Shadow, "self_modulate",
-			$Shadow.self_modulate, Color(1,1,1,0.25), 0.5,
+			var shadowtween = shadow.get_node("ShadowTween")
+			shadowtween.interpolate_property(shadow, "self_modulate",
+			shadow.self_modulate, Color(1,1,1,0.25), 0.5,
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			shadowtween.start()
 
@@ -188,9 +194,9 @@ func _on_AnimationTimer_timeout(): #Takes damage and animation
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		visibilitytween.start()
 		
-		var shadowtween = $Shadow/ShadowTween
-		shadowtween.interpolate_property($Shadow, "self_modulate",
-		$Shadow.self_modulate, Color(1,1,1,0), 0.25,
+		var shadowtween = shadow.get_node("ShadowTween")
+		shadowtween.interpolate_property(shadow, "self_modulate",
+		shadow.self_modulate, Color(1,1,1,0), 0.25,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		shadowtween.start()
 		
@@ -212,7 +218,7 @@ func _process(_delta):
 
 func update_occupied_tile():
 	occupiedytile = ceil(float(occupiedtile / arena.arenalength)) #Finds out which Y tile this entity is occupying
-	occupiedxtile = ceil(float(occupiedtile - occupiedytile * 5)) #Finds out which X tile this entity is occupying
+	occupiedxtile = ceil(float(occupiedtile - occupiedytile * arena.arenalength)) #Finds out which X tile this entity is occupying
 
 
 func set_occupiedtile(tile):
