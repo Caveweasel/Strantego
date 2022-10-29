@@ -4,23 +4,14 @@
 
 [node name="AntmationsHD" instance=ExtResource( 1 )]
 
-[node name="Divide1" parent="Thorax/Gaster" index="1"]
-self_modulate = Color( 0.2, 0.176471, 0.160784, 1 )
-
-[node name="LowerThorax" parent="Thorax" index="6"]
+[node name="Head" parent="Thorax" index="11"]
 self_modulate = Color( 0.305882, 0.247059, 0.219608, 1 )
 
-[node name="Head" parent="Thorax" index="8"]
-self_modulate = Color( 0.305882, 0.247059, 0.219608, 1 )
-
-[node name="RMandible" parent="Thorax/Head" index="2"]
+[node name="RMandible" parent="Thorax/Head" index="3"]
 self_modulate = Color( 0.227451, 0.184314, 0.160784, 1 )
 
-[node name="LMandible" parent="Thorax/Head" index="3"]
+[node name="LMandible" parent="Thorax/Head" index="4"]
 self_modulate = Color( 0.227451, 0.184314, 0.160784, 1 )
-
-[node name="LAntenna" parent="Thorax/Head" index="4"]
-self_modulate = Color( 0.372549, 0.317647, 0.290196, 1 )
 
 [node name="LSeg2" parent="Thorax/Head/LAntenna" index="0"]
 self_modulate = Color( 0.305882, 0.247059, 0.219608, 1 )

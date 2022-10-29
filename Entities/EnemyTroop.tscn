@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Entities/EnemyTroop.gd" type="Script" id=1]
 [ext_resource path="res://Entities/EnemyAntcestor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Entities/Animations/AntimationsHD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Animations/LasiusAnimations/AntmationsHDnigerTroop.tscn" type="PackedScene" id=3]
 
 [node name="EnemyTroop" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
