@@ -95,11 +95,13 @@ func arena_update():
 	# FIX: CRASH AFTER GYNE DIES
 	if not dead and isant:
 		
-		if occupiedtile == gyne.occupiedtile and not selected and moved: #Hides itself if it is behind the gyne
+		if occupiedtile == gyne.occupiedtile and not selected: #Hides itself if it is behind the gyne
+		#if occupiedtile == gyne.occupiedtile: #Hides itself if it is behind the gyne
 			self_modulate = Color(1,1,1,0)
 			shadow.self_modulate = Color(1,1,1,0)
-	
+		
 		elif not occupiedtile == gyne.occupiedtile and self_modulate == Color(1,1,1,0): #Shows itself when moving away from the gyne
+		#else: #Shows itself when moving away from the gyne
 			var visibilitytween = $VisibilityTween
 			visibilitytween.interpolate_property(self, "self_modulate",
 			self_modulate, Color(1,1,1,1), 0.5,

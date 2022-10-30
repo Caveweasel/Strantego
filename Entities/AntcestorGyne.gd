@@ -182,6 +182,7 @@ func _on_AnimationTimer_timeout(): #Takes damage and animation
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		shadowtween.start()
 		
+		arena.check_gynes()
 		$AnimationTimer.wait_time = 1
 		$EggTimer.visible = false
 		$AnimationTimer.start()

@@ -227,7 +227,7 @@ func modulate_circles():
 		if e.occupiedtile == gyne.occupiedtile:
 			gyne.visible = false
 			e.self_modulate = Color(1,1,1,1)
-			#e.get_node("AntimationsHD/Shadow").self_modulate = Color(1,1,1,0.25)
+			e.shadow.self_modulate = Color(1,1,1,0.25)
 		
 		#Moves the WASDIcons to their correct positions and makes them the correct color
 		if not e.isAI:

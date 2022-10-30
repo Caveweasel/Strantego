@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://BattleScene/EarthTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Resources/Resource.tscn" type="PackedScene" id=2]
@@ -27,6 +27,8 @@
 [ext_resource path="res://Sprites/Level/Sword.png" type="Texture" id=25]
 [ext_resource path="res://BattleScene/AstarTileMap.gd" type="Script" id=26]
 [ext_resource path="res://BattleScene/AstarDebug.gd" type="Script" id=27]
+[ext_resource path="res://Sprites/Level/AlphaWinPanel.png" type="Texture" id=28]
+[ext_resource path="res://BattleScene/WinPanel.gd" type="Script" id=29]
 
 [sub_resource type="ShortCut" id=1]
 
@@ -88,6 +90,14 @@ script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WinPanel" type="Sprite" parent="Camera/GUI"]
+position = Vector2( 960, -1009 )
+z_index = 15
+texture = ExtResource( 28 )
+script = ExtResource( 29 )
+
+[node name="MoveTween" type="Tween" parent="Camera/GUI/WinPanel"]
 
 [node name="KillButton" type="TextureButton" parent="Camera/GUI" groups=[
 "Arena",
@@ -172,6 +182,7 @@ margin_top = 10.0
 margin_right = 40.0
 margin_bottom = 38.0
 texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 21 )
 texture_disabled = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -238,7 +249,7 @@ margin_top = -800.0
 margin_right = 87.158
 margin_bottom = -786.0
 rect_scale = Vector2( 2, 2 )
-text = "Alpha v0.9.0"
+text = "Alpha v0.0.2"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -250,6 +261,18 @@ margin_right = 87.158
 margin_bottom = -750.0
 rect_scale = Vector2( 2, 2 )
 text = "FPS: 60"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseButton" type="TextureButton" parent="Camera/GUI"]
+margin_left = 1884.0
+margin_top = -796.0
+margin_right = 1908.0
+margin_bottom = -768.0
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 21 )
+texture_disabled = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -324,3 +347,4 @@ __meta__ = {
 [connection signal="pressed" from="Camera/GUI/KillButton" to="." method="_on_KillButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/NextTurnButton" to="." method="_on_NextTurnButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/InfoBox/XButton" to="Camera/GUI/InfoBox" method="_on_XButton_pressed"]
+[connection signal="pressed" from="Camera/GUI/CloseButton" to="." method="_on_CloseButton_pressed"]

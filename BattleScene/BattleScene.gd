@@ -8,6 +8,7 @@ var tiles = [] #An array of tiles and their position
 #var arenabiome #Which biome this arena is in
 var turn #Whose turn it is
 var turnnumber = 0 #Which turn it is
+var gamehasended = false
 
 var selectedcolonynumber = 0 #Which number colony is the currently selected one
 var selectedcolony #Which colony is the currently selected one
@@ -62,11 +63,12 @@ func _ready():
 
 
 func arena_update():
-	select_movers()
-	get_tree().call_group("Arena", "movement_update")
-	# foreach PLayer
-	#    for ally  in player.allies 
-	#        #ally.movement_update()
+	if not gamehasended:
+		select_movers()
+		get_tree().call_group("Arena", "movement_update")
+		# foreach PLayer
+		#    for ally  in player.allies 
+		#        #ally.movement_update()
 
 
 #func plains(): #I need this function so I can send the arenabiome variable to Tilemap
@@ -165,6 +167,39 @@ func _process(_delta):
 	$Camera/GUI/FPSCounter.text = "FPS: " + str(Engine.get_frames_per_second())
 
 
+
+func check_gynes():
+	var gynecount = 0
+	#Sees how many gynes are left
+	for i in players.get_child_count():
+		if players.get_child(i).get_child_count() >= 1:
+			if players.get_child(i).get_child(0).name == "Gyne":
+				if players.get_child(i).get_child(0).dead == false:
+					gynecount += 1
+	#Checks if there is one gyne left
+	if gynecount <= 1:
+		if players.get_child(1).get_child_count() >= 1:
+			if players.get_child(1).get_child(0).name == "Gyne":
+				end_game(true)
+			else:
+				end_game(false)
+		else:
+			end_game(false)
+
+
+func end_game(won):
+	for i in selectedcolony.get_child_count():
+		if selectedcolony.get_child(i).moveable:
+			selectedcolony.get_child(i).moved = false
+			selectedcolony.get_child(i).selected = false
+	
+	gamehasended = true
+	$Camera/GUI/NextTurnButton.disabled = true
+	$Camera/GUI/KillButton.disabled = true
+	$Camera/GUI/InfoBox.close()
+	$Camera/GUI/WinPanel.move_in(won)
+
+
 #func _process(_delta):
 #	if selectedcolony.get_child_count() == 0:
 #		_on_NextTurnButton_pressed()
@@ -218,3 +253,7 @@ func _process(_delta):
 ##					return
 #		$NextTurnButton.disabled = false
 
+
+
+func _on_CloseButton_pressed():
+	get_tree().quit()
