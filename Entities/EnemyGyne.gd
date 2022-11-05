@@ -22,7 +22,7 @@ func _ready():
 	troop = load("res://Entities/EnemyTroop.tscn")
 	troopcost = 20
 	troopincubationtime = 3
-	occupiedtile = arena.arenalength*2-1
+	#occupiedtile = arena.arenalength*2-1
 	
 	shadow = get_node("AntmationsHD/Shadow")
 	
@@ -56,7 +56,7 @@ func AI(): #Fully random AI chooses has a 50/50 chance to choose either option
 	
 	var ownallyforagercount = 0
 	var ownallytroopcount = 0
-	if not ownallies.resources < foragercost and not ownallies.resources < troopcost:
+	if not ownallies.resources < foragercost or not ownallies.resources < troopcost:
 		for i in ownallies.get_child_count():
 			if not ownallies.get_child(i) == self:
 				if ownallies.get_child(i).isforager:
@@ -80,11 +80,30 @@ func AI(): #Fully random AI chooses has a 50/50 chance to choose either option
 #				ownallies.resources -= troopcost
 		
 		elif sqrt(ownallytroopcount) > ownallyforagercount and ownallies.resources >= foragercost:
-			producing = "forager"
-			eggtimer += 1
-			$EggTimer.setup(foragerincubationtime)
 			
-			ownallies.resources -= foragercost
+			var resources = arena.get_node("Resources")
+			var allresourceoccupied = 0
+			
+			for b in resources.get_child_count(): #For every resource
+				#if global_position.distance_to(resources.get_child(b).global_position) < global_position.distance_to(selectedresource.global_position): #If the distance to the resource is lower than the distance to the selected resource
+					for l in players.get_child_count(): #If there is another entity on the resource, don't go to it
+						for i in players.get_child(l).get_child_count():
+							if players.get_child(l).get_child(i).occupiedtile == resources.get_child(b).occupiedtile:
+								allresourceoccupied += 1
+			
+			if allresourceoccupied < resources.get_child_count(): #If there is an available resource
+				producing = "forager"
+				eggtimer += 1
+				$EggTimer.setup(foragerincubationtime)
+				
+				ownallies.resources -= foragercost
+				
+			elif ownallies.resources >= troopcost:
+				producing = "troop"
+				eggtimer += 1
+				$EggTimer.setup(troopincubationtime)
+				
+				ownallies.resources -= troopcost
 		
 		
 		elif ownallies.resources >= troopcost:
@@ -94,12 +113,12 @@ func AI(): #Fully random AI chooses has a 50/50 chance to choose either option
 			
 			ownallies.resources -= troopcost
 			
-		elif ownallies.resources >= foragercost:
-			producing = "forager"
-			eggtimer += 1
-			$EggTimer.setup(foragerincubationtime)
-			
-			ownallies.resources -= foragercost
+#		elif ownallies.resources >= foragercost:
+#			producing = "forager"
+#			eggtimer += 1
+#			$EggTimer.setup(foragerincubationtime)
+#
+#			ownallies.resources -= foragercost
 		
 	get_tree().call_group("Arena", "arena_update")
 

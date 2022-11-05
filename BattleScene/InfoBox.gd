@@ -27,6 +27,8 @@ func refresh(e):
 	$Health.text = str(selectedentity.health)
 	$Attack.visible = true
 	$Attack.text = str(selectedentity.strength)
+	$Species.visible = true
+	$Species.text = str(selectedentity.species)
 	
 	$Anim.add_child(selectedentity.animationplayer.instance())
 	$Anim.start_animation(selectedentity)
@@ -40,6 +42,7 @@ func close():
 	$XButton.disabled = true
 	$Health.visible = false
 	$Attack.visible = false
+	$Species.visible = false
 
 func _on_XButton_pressed():
 	close()

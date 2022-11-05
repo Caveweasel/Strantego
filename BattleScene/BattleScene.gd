@@ -29,7 +29,7 @@ func _ready():
 #	$Camera.position.x = float(arenalength) / 2 * 128 - 64
 #	$Camera.position.y = float(arenawidth) / 2 * 128 + 64
 	var zoom = 0
-	print(arenalength*0.42)
+	#print(arenalength*0.42)
 	if (arenawidth-5)*0.16 > (arenalength-13)*0.075:
 		if arenawidth > 5:
 			zoom = (arenawidth-5)*0.16
@@ -179,7 +179,7 @@ func check_gynes():
 	#Checks if there is one gyne left
 	if gynecount <= 1:
 		if players.get_child(1).get_child_count() >= 1:
-			if players.get_child(1).get_child(0).name == "Gyne":
+			if players.get_child(1).get_child(0).dead == false:
 				end_game(true)
 			else:
 				end_game(false)
@@ -256,4 +256,4 @@ func end_game(won):
 
 
 func _on_CloseButton_pressed():
-	get_tree().quit()
+	$Camera/GUI/ClosePanel.move_in()

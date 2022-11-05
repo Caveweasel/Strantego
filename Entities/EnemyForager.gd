@@ -57,16 +57,20 @@ func get_target():
 	var resourceoccupied = false
 	
 	for b in resources.get_child_count(): #For every resource
-		#if gyne.global_position.distance_to(resources.get_child(b).global_position) <= allygyne.global_position.distance_to(resources.get_child(b).global_position): #If it is closer to it's own queen than the player's queen
-			if global_position.distance_to(resources.get_child(b).global_position) < selectedresource.global_position.distance_to(resources.get_child(b).global_position): #If the distance to the resource is lower than the distance to the selected resource
-				resourceoccupied = false
-				for l in players.get_child_count(): #If there is another entity on the resource, don't go to it
-					for i in players.get_child(l).get_child_count():
-						if players.get_child(l).get_child(i).occupiedtile == resources.get_child(b).occupiedtile:
-							resourceoccupied = true
-				
-				if not resourceoccupied: #replace the selected resource
-					selectedresource = resources.get_child(b)
+		
+#		print(Vector2(global_position.distance_to(resources.get_child(b).global_position),
+#			selectedresource.global_position.distance_to(resources.get_child(b).global_position)))
+		
+		#if global_position.distance_to(resources.get_child(b).global_position) < selectedresource.global_position.distance_to(resources.get_child(b).global_position): #If the distance to the resource is lower than the distance to the selected resource
+		if global_position.distance_to(resources.get_child(b).global_position) < global_position.distance_to(selectedresource.global_position): #If the distance to the resource is lower than the distance to the selected resource
+			resourceoccupied = false
+			for l in players.get_child_count(): #If there is another entity on the resource, don't go to it
+				for i in players.get_child(l).get_child_count():
+					if players.get_child(l).get_child(i).occupiedtile == resources.get_child(b).occupiedtile:
+						resourceoccupied = true
+			
+			if not resourceoccupied: #replace the selected resource
+				selectedresource = resources.get_child(b)
 	
 	path = arena.get_node("TileMap").get_astar_path_avoiding_obstacles(self.global_position - Vector2(64,64), selectedresource.global_position - Vector2(64,64))
 

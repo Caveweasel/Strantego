@@ -2,7 +2,7 @@ extends Node
 
 onready var gyne = get_node("Gyne")
 
-var resources = 20 #How many resources you have
+var resources = 30 #How many resources you have
 #var enabled = true
 
 

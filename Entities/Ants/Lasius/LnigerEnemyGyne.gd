@@ -11,15 +11,16 @@ func _ready():
 	
 	isAI = true
 	#scale.x = -1
-	forager = load("res://Entities/EnemyForager.tscn")
+	forager = load("res://Entities/Ants/Lasius/LnigerEnemyForager.tscn")
 	foragercost = 10
 	foragerincubationtime = 2
 	foragerefficiency = 0.5
-	troop = load("res://Entities/EnemyTroop.tscn")
+	troop = load("res://Entities/Ants/Lasius/LnigerEnemyTroop.tscn")
 	troopcost = 20
 	troopincubationtime = 3
-	occupiedtile = arena.arenalength*2-1
+	#occupiedtile = arena.arenalength*2-1
 	
+	species = "Lasius niger"
 	shadow = get_node("AntmationsHD/Shadow")
 	
 	animationplayer = load("res://Entities/Animations/LasiusAnimations/AntmationsHDLasiusGyne.tscn")

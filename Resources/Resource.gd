@@ -7,7 +7,7 @@ var occupiedtile = 1 #The tile this entity is occupying
 var occupiedxtile = 0
 var occupiedytile = 0
 #Resource variables
-var resources = 10
+export var resources = 10
 
 
 func arena_ready():

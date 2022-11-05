@@ -1,16 +1,15 @@
 [gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://BattleScene/EarthTiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Resources/Resource.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Level/NextTurnButtonPressed.png" type="Texture" id=2]
 [ext_resource path="res://BattleScene/BattleScene.gd" type="Script" id=3]
-[ext_resource path="res://Entities/Obstacles/Rock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GUI/CloseButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/Level/GUI.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Level/ButtonPressed.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Level/Button.png" type="Texture" id=7]
-[ext_resource path="res://Entities/AllyGyne.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GUI/ClosePanel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/Level/NextTurnButton.png" type="Texture" id=7]
+[ext_resource path="res://Entities/Ants/Lasius/LnigerAllyGyne.tscn" type="PackedScene" id=8]
 [ext_resource path="res://BattleScene/ResourceManager.gd" type="Script" id=9]
-[ext_resource path="res://Sprites/Resources/PoorCrop.png" type="Texture" id=10]
-[ext_resource path="res://Entities/EnemyGyne.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/Ants/Lasius/LnigerEnemyGyne.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sprites/Level/ResourceBarEmpty.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Level/ResourceBarFull.png" type="Texture" id=13]
 [ext_resource path="res://BattleScene/ResourceBar.gd" type="Script" id=14]
@@ -29,6 +28,7 @@
 [ext_resource path="res://BattleScene/AstarDebug.gd" type="Script" id=27]
 [ext_resource path="res://Sprites/Level/AlphaWinPanel.png" type="Texture" id=28]
 [ext_resource path="res://BattleScene/WinPanel.gd" type="Script" id=29]
+[ext_resource path="res://Fonts/ArialBlack.tres" type="DynamicFont" id=30]
 
 [sub_resource type="ShortCut" id=1]
 
@@ -99,6 +99,13 @@ script = ExtResource( 29 )
 
 [node name="MoveTween" type="Tween" parent="Camera/GUI/WinPanel"]
 
+[node name="ClosePanel" parent="Camera/GUI" instance=ExtResource( 6 )]
+pause_mode = 2
+position = Vector2( 960, -1009 )
+z_index = 15
+starty = -1009
+tweeny = -403
+
 [node name="KillButton" type="TextureButton" parent="Camera/GUI" groups=[
 "Arena",
 ]]
@@ -157,8 +164,8 @@ margin_bottom = 248.0
 keep_pressed_outside = true
 shortcut = SubResource( 3 )
 texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 6 )
-texture_disabled = ExtResource( 6 )
+texture_pressed = ExtResource( 2 )
+texture_disabled = ExtResource( 2 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -210,79 +217,88 @@ script = ExtResource( 23 )
 
 [node name="Health" type="Label" parent="Camera/GUI/InfoBox"]
 margin_left = 266.0
-margin_top = 52.0
-margin_right = 280.0
-margin_bottom = 66.0
-rect_scale = Vector2( 2, 2 )
+margin_top = 40.0
+margin_right = 308.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 30 )
 text = "20"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Camera/GUI/InfoBox/Health"]
-margin_left = -16.0
-margin_top = -2.0
-margin_bottom = 14.0
+[node name="Heart" type="TextureRect" parent="Camera/GUI/InfoBox/Health"]
+margin_left = -34.0
+margin_top = 10.0
+margin_right = -2.0
+margin_bottom = 42.0
 texture = ExtResource( 24 )
+expand = true
 
 [node name="Attack" type="Label" parent="Camera/GUI/InfoBox"]
 margin_left = 362.0
-margin_top = 52.0
-margin_right = 378.0
-margin_bottom = 66.0
-rect_scale = Vector2( 2, 2 )
+margin_top = 40.0
+margin_right = 404.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 30 )
 text = "10"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="Camera/GUI/InfoBox/Attack"]
-margin_left = -16.0
-margin_top = -2.0
-margin_bottom = 14.0
+[node name="Sword" type="TextureRect" parent="Camera/GUI/InfoBox/Attack"]
+margin_left = -34.0
+margin_top = 10.0
+margin_right = -2.0
+margin_bottom = 42.0
 texture = ExtResource( 25 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Species" type="Label" parent="Camera/GUI/InfoBox"]
+margin_left = 210.0
+margin_right = 423.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 30 )
+text = "Dave"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VersionLabel" type="Label" parent="Camera/GUI"]
-margin_left = 8.15802
-margin_top = -800.0
-margin_right = 87.158
-margin_bottom = -786.0
-rect_scale = Vector2( 2, 2 )
+margin_left = 8.158
+margin_top = -812.0
+margin_right = 223.158
+margin_bottom = -766.0
+custom_fonts/font = ExtResource( 30 )
 text = "Alpha v0.0.2"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FPSCounter" type="Label" parent="Camera/GUI"]
-margin_left = 8.15796
-margin_top = -764.0
-margin_right = 87.158
-margin_bottom = -750.0
-rect_scale = Vector2( 2, 2 )
+margin_left = 8.158
+margin_top = -776.0
+margin_right = 139.158
+margin_bottom = -730.0
+custom_fonts/font = ExtResource( 30 )
 text = "FPS: 60"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CloseButton" type="TextureButton" parent="Camera/GUI"]
-margin_left = 1884.0
+[node name="CloseButton" parent="Camera/GUI" instance=ExtResource( 4 )]
 margin_top = -796.0
-margin_right = 1908.0
 margin_bottom = -768.0
-texture_normal = ExtResource( 20 )
-texture_pressed = ExtResource( 21 )
-texture_disabled = ExtResource( 21 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ResourceLabel" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -14.0
-margin_right = 40.0
-rect_scale = Vector2( 2, 2 )
+margin_top = -23.0
+margin_right = 42.0
+margin_bottom = 23.0
+custom_fonts/font = ExtResource( 30 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "20"
 uppercase = true
@@ -295,44 +311,21 @@ __meta__ = {
 
 [node name="Obstacles" type="Node" parent="Players"]
 
-[node name="Rock" parent="Players/Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 128, 256 )
-
-[node name="Rock2" parent="Players/Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 384, 128 )
-
-[node name="Rock3" parent="Players/Obstacles" instance=ExtResource( 4 )]
-position = Vector2( 256, 0 )
-
 [node name="Allies" type="Node" parent="Players"]
 script = ExtResource( 9 )
 
 [node name="Gyne" parent="Players/Allies" instance=ExtResource( 8 )]
 position = Vector2( 0, 128 )
-z_index = 0
 
 [node name="AI1" type="Node" parent="Players"]
 script = ExtResource( 9 )
 
 [node name="Gyne" parent="Players/AI1" instance=ExtResource( 11 )]
 position = Vector2( 512, 128 )
-rotation = 3.14159
-scale = Vector2( 1, -1 )
 
 [node name="AI2" type="Node" parent="Players"]
 
 [node name="Resources" type="Node" parent="."]
-
-[node name="Resource" parent="Resources" instance=ExtResource( 2 )]
-position = Vector2( 128, 128 )
-texture = ExtResource( 10 )
-
-[node name="Resource2" parent="Resources" instance=ExtResource( 2 )]
-texture = ExtResource( 10 )
-
-[node name="Resource3" parent="Resources" instance=ExtResource( 2 )]
-position = Vector2( 384, 0 )
-texture = ExtResource( 10 )
 
 [node name="Particles" type="Node" parent="."]
 

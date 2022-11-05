@@ -1,7 +1,6 @@
 extends "res://Entities/AntcestorGyne.gd"
 
 
-
 func _ready():
 #	self.texture = load("res://Sprites/Entities/GyneAlly.png")
 #	$Highlight.texture = load("res://Sprites/Entities/GyneHighlight.png") #Assigns highlights's texture
@@ -14,7 +13,7 @@ func _ready():
 	troop = load("res://Entities/AllyTroop.tscn")
 	troopcost = 20
 	troopincubationtime = 3
-	occupiedtile = arena.arenalength
+	#occupiedtile = arena.arenalength
 	
 	shadow = get_node("AntmationsHD/Shadow")
 	

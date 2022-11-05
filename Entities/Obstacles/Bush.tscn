@@ -4,7 +4,6 @@
 [ext_resource path="res://Sprites/Entities/Obstacles/Bush.png" type="Texture" id=2]
 [ext_resource path="res://Entities/Obstacles/Bush.gd" type="Script" id=3]
 
-
 [node name="Bush" instance=ExtResource( 1 )]
 texture = null
 script = ExtResource( 3 )

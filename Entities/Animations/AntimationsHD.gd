@@ -16,10 +16,10 @@ func _process(_delta):
 func start_anim(isAI, animation):
 	if isAI != null:
 		if isAI:
-			get_parent().get_node("Thorax/Gaster/Divide0").self_modulate = Color(1,0.2,0.2,1)
-			get_parent().get_node("Thorax/Gaster/Divide1").self_modulate = Color(1,0.2,0.2,1)
+			get_parent().get_node("Thorax/GhostPetiole/GhostPostPetiole/Gaster/Divide0").self_modulate = Color(1,0.2,0.2,1)
+			get_parent().get_node("Thorax/GhostPetiole/GhostPostPetiole/Gaster/Divide1").self_modulate = Color(1,0.2,0.2,1)
 		else:
-			get_parent().get_node("Thorax/Gaster/Divide0").self_modulate = Color(0.3,0.3,1,1)
-			get_parent().get_node("Thorax/Gaster/Divide1").self_modulate = Color(0.3,0.3,1,1)
+			get_parent().get_node("Thorax/GhostPetiole/GhostPostPetiole/Gaster/Divide0").self_modulate = Color(0.3,0.3,1,1)
+			get_parent().get_node("Thorax/GhostPetiole/GhostPostPetiole/Gaster/Divide1").self_modulate = Color(0.3,0.3,1,1)
 	
 	play(animation)

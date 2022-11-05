@@ -27,6 +27,7 @@ var moved = false
 var moveable = true #Can do an action f.eks. move
 var selected = false
 var thinking = false
+var species = "Hi"
 #Gyne variables
 var eggtimer = 0 #How many turns this entity has been in production
 var forager #Which entity this entity produces when producing a forager
@@ -149,6 +150,11 @@ func arena_update():
 
 
 func damage(damage, aggressor): #Takes damage
+	
+	var damagelabel = load("res://Entities/DamageLabel.tscn").instance()
+	arena.add_child(damagelabel)
+	damagelabel.start(-damage, global_position)
+	
 	if damage >= health:
 		dead = true
 		
@@ -190,6 +196,12 @@ func _on_AnimationTimer_timeout(): #Takes damage and animation
 		
 		get_tree().call_group("Arena", "arena_update")
 		queue_free()
+	else:
+		var visibilitytween = $VisibilityTween
+		visibilitytween.interpolate_property(self, "self_modulate",
+		Color(1,0,0,1), self_modulate, 1,
+		Tween.TRANS_EXPO, Tween.EASE_OUT)
+		visibilitytween.start()
 #		get_parent().queue_free() #Removes this category
 
 

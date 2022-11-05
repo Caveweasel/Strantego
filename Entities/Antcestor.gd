@@ -21,6 +21,7 @@ var health = 30
 var strength = 20
 var dead = false
 var attackable = true
+var species = "Hi"
 #Player variables
 var moveable = true #Can do an action f.eks. move
 var selected = false
@@ -160,6 +161,11 @@ func _on_AttackAnimationTimer_timeout():
 
 func damage(damage, aggressor): #Takes damage
 	health -= damage
+	
+	var damagelabel = load("res://Entities/DamageLabel.tscn").instance()
+	arena.add_child(damagelabel)
+	damagelabel.start(-damage, global_position)
+	
 	$AnimationTimer.start()
 #	if damage >= health:
 	if health <= 0:
@@ -208,6 +214,12 @@ func _on_AnimationTimer_timeout(): #Takes damage and animation
 		
 		get_tree().call_group("Arena", "arena_update")
 		queue_free()
+	else:
+		var visibilitytween = $VisibilityTween
+		visibilitytween.interpolate_property(self, "self_modulate",
+		Color(1,0,0,1), self_modulate, 1,
+		Tween.TRANS_EXPO, Tween.EASE_OUT)
+		visibilitytween.start()
 
 
 func _process(_delta):

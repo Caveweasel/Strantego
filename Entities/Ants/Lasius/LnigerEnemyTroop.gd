@@ -8,7 +8,8 @@ func constructor():
 #	$Highlight.texture = load("res://Sprites/Entities/TroopHighlight.png") #Assigns highlights's texture
 	health = 30
 	strength = 20
-	animationplayer = load("res://Entities/Animations/AntimationsHD.tscn")
+	species = "Lasius niger"
+	animationplayer = load("res://Entities/Animations/LasiusAnimations/AntmationsHDnigerTroop.tscn")
 	tilescale = 1
 
 func antimation():

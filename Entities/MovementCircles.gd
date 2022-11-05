@@ -113,16 +113,16 @@ func movement_update(): #Detects entities
 	
 	#Makes the circles grey if there is an ally
 	for i in ownallies.get_child_count():
-		if ownallies.get_child(i).occupiedxtile == currentxtile - 1 and ownallies.get_child(i).occupiedytile == currentytile:
+		if ownallies.get_child(i).occupiedxtile == currentxtile - 1 and ownallies.get_child(i).occupiedytile == currentytile and not ownallies.get_child(i).dead:
 			get_child(0).self_modulate = immoveablearea
 			canmoveleft = 0
-		elif ownallies.get_child(i).occupiedxtile == currentxtile + 1 and ownallies.get_child(i).occupiedytile == currentytile:
+		elif ownallies.get_child(i).occupiedxtile == currentxtile + 1 and ownallies.get_child(i).occupiedytile == currentytile and not ownallies.get_child(i).dead:
 			get_child(1).self_modulate = immoveablearea
 			canmoveright = 0
-		elif ownallies.get_child(i).occupiedytile == currentytile - 1 and ownallies.get_child(i).occupiedxtile == currentxtile:
+		elif ownallies.get_child(i).occupiedytile == currentytile - 1 and ownallies.get_child(i).occupiedxtile == currentxtile and not ownallies.get_child(i).dead:
 			get_child(2).self_modulate = immoveablearea
 			canmoveup = 0
-		elif ownallies.get_child(i).occupiedytile == currentytile + 1 and ownallies.get_child(i).occupiedxtile == currentxtile:
+		elif ownallies.get_child(i).occupiedytile == currentytile + 1 and ownallies.get_child(i).occupiedxtile == currentxtile and not ownallies.get_child(i).dead:
 			get_child(3).self_modulate = immoveablearea
 			canmovedown = 0
 	

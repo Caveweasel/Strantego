@@ -3,8 +3,9 @@
 [ext_resource path="res://Entities/Animations/AntimationsHD.tscn" type="PackedScene" id=1]
 
 [node name="AntmationsHD" instance=ExtResource( 1 )]
+scale = Vector2( 0.45, 0.45 )
 
-[node name="Head" parent="Thorax" index="11"]
+[node name="Head" parent="Thorax" index="10"]
 self_modulate = Color( 0.305882, 0.247059, 0.219608, 1 )
 
 [node name="RMandible" parent="Thorax/Head" index="3"]

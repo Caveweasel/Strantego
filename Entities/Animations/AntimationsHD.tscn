@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 4 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Thorax/Gaster:rotation_degrees")
+tracks/1/path = NodePath("Thorax/GhostPetiole/GhostPostPetiole/Gaster:rotation_degrees")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -453,48 +453,56 @@ z_index = -1
 texture = ExtResource( 4 )
 offset = Vector2( 0, 18 )
 
-[node name="Gaster" type="Node2D" parent="Thorax"]
-position = Vector2( -25, 0 )
+[node name="GhostPetiole" type="Node2D" parent="Thorax"]
+position = Vector2( -24.478, -2.657 )
+
+[node name="GhostPostPetiole" type="Node2D" parent="Thorax/GhostPetiole"]
+
+[node name="Gaster" type="Node2D" parent="Thorax/GhostPetiole/GhostPostPetiole"]
+position = Vector2( -0.521999, 2.657 )
 rotation = -0.0436332
 scale = Vector2( 1.25, 1.25 )
 
-[node name="Seg2" type="Sprite" parent="Thorax/Gaster"]
+[node name="Seg2" type="Sprite" parent="Thorax/GhostPetiole/GhostPostPetiole/Gaster"]
 self_modulate = Color( 0.337255, 0.282353, 0.254902, 1 )
 position = Vector2( -18.005, -3.30983 )
 scale = Vector2( 0.297438, 0.287574 )
 texture = ExtResource( 2 )
 
-[node name="Divide1" type="Sprite" parent="Thorax/Gaster"]
+[node name="Divide1" type="Sprite" parent="Thorax/GhostPetiole/GhostPostPetiole/Gaster"]
 self_modulate = Color( 0.2, 0.176471, 0.160784, 1 )
 position = Vector2( -13.052, -4.56042 )
 scale = Vector2( 0.3784, 0.349155 )
 texture = ExtResource( 2 )
 
-[node name="Seg1" type="Sprite" parent="Thorax/Gaster"]
+[node name="Seg1" type="Sprite" parent="Thorax/GhostPetiole/GhostPostPetiole/Gaster"]
 self_modulate = Color( 0.337255, 0.282353, 0.254902, 1 )
 position = Vector2( -9.91805, -4.99256 )
 scale = Vector2( 0.391312, 0.351521 )
 texture = ExtResource( 2 )
 
-[node name="Divide0" type="Sprite" parent="Thorax/Gaster"]
+[node name="Divide0" type="Sprite" parent="Thorax/GhostPetiole/GhostPostPetiole/Gaster"]
 self_modulate = Color( 0.2, 0.176471, 0.160784, 1 )
 position = Vector2( -7.50986, -4.49429 )
 scale = Vector2( 0.340857, 0.340857 )
 texture = ExtResource( 2 )
 
-[node name="Seg0" type="Sprite" parent="Thorax/Gaster"]
+[node name="Seg0" type="Sprite" parent="Thorax/GhostPetiole/GhostPostPetiole/Gaster"]
 self_modulate = Color( 0.337255, 0.282353, 0.254902, 1 )
 position = Vector2( -4.12095, -3.67576 )
 scale = Vector2( 0.297936, 0.297936 )
 texture = ExtResource( 2 )
-
-[node name="Petiole2" type="Sprite" parent="Thorax"]
 
 [node name="Petiole" type="Sprite" parent="Thorax"]
 self_modulate = Color( 0.270588, 0.223529, 0.2, 1 )
 position = Vector2( -24.4778, -2.65734 )
 scale = Vector2( 0.067511, 0.169583 )
 texture = ExtResource( 2 )
+
+[node name="PostPetiole" type="Sprite" parent="Thorax/Petiole"]
+show_behind_parent = true
+position = Vector2( 362.575, 15.6698 )
+scale = Vector2( 14.8124, 5.89682 )
 
 [node name="LowerThorax" type="Sprite" parent="Thorax"]
 self_modulate = Color( 0.305882, 0.247059, 0.219608, 1 )
