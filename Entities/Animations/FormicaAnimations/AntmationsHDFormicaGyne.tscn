@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/Animations/FormicaAnimations/AntmationsHDFormica.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Animations/LasiusAnimations/LasiusGyneIdle.tres" type="Animation" id=2]
+[ext_resource path="res://Entities/Animations/FormicaAnimations/FormicaGyneIdle.tres" type="Animation" id=3]
+
+[node name="AntmationsHD" instance=ExtResource( 1 )]
+position = Vector2( 12, -8 )
+
+[node name="Thorax" parent="." index="1"]
+position = Vector2( 0, 0.171875 )
+rotation = -0.00446804
+
+[node name="BLleg" parent="Thorax" index="0"]
+rotation = 0.612611
+
+[node name="BLSeg2" parent="Thorax/BLleg" index="0"]
+rotation = -1.46433
+
+[node name="BLSeg3" parent="Thorax/BLleg/BLSeg2" index="0"]
+rotation = -4.87121
+
+[node name="MLleg" parent="Thorax" index="1"]
+position = Vector2( 5.62197, 2.12575 )
+
+[node name="MLSeg2" parent="Thorax/MLleg" index="0"]
+rotation = -0.12026
+
+[node name="FLSeg2" parent="Thorax/FLleg" index="0"]
+rotation = 1.09781
+
+[node name="FLSeg3" parent="Thorax/FLleg/FLSeg2" index="0"]
+rotation = -1.33518
+
+[node name="GhostPetiole" parent="Thorax" index="3"]
+position = Vector2( -26, -2.657 )
+
+[node name="Gaster" parent="Thorax/GhostPetiole/GhostPostPetiole" index="0"]
+scale = Vector2( 1.7, 1.5 )
+
+[node name="Petiole" parent="Thorax" index="4"]
+position = Vector2( -26.6556, -3.20333 )
+scale = Vector2( 0.067511, 0.176412 )
+
+[node name="LowerThorax" parent="Thorax" index="5"]
+position = Vector2( -8.72666, -0.343729 )
+scale = Vector2( 0.401143, 0.26594 )
+
+[node name="UpperThorax" parent="Thorax" index="6"]
+position = Vector2( 3.53271, -7.01315 )
+scale = Vector2( 0.451923, 0.348358 )
+
+[node name="BRleg" parent="Thorax" index="7"]
+rotation = 0.612611
+
+[node name="BRSeg2" parent="Thorax/BRleg" index="0"]
+rotation = -1.46433
+
+[node name="BRSeg3" parent="Thorax/BRleg/BRSeg2" index="0"]
+rotation = -4.87121
+
+[node name="MRSeg2" parent="Thorax/MRleg" index="0"]
+rotation = -0.820305
+
+[node name="MRSeg3" parent="Thorax/MRleg/MRSeg2" index="0"]
+rotation = 0.738274
+
+[node name="FRleg" parent="Thorax" index="9"]
+rotation = 0.0663225
+
+[node name="FRSeg2" parent="Thorax/FRleg" index="0"]
+rotation = 0.649262
+
+[node name="FRSeg3" parent="Thorax/FRleg/FRSeg2" index="0"]
+rotation = -0.998328
+
+[node name="Head" parent="Thorax" index="10"]
+position = Vector2( 13.8519, -10.6286 )
+rotation = 0.226893
+scale = Vector2( 0.359, 0.325 )
+
+[node name="RMandible" parent="Thorax/Head" index="3"]
+rotation = -0.0802851
+
+[node name="LMandible" parent="Thorax/Head" index="4"]
+position = Vector2( 76.0653, -0.386429 )
+rotation = -0.3735
+
+[node name="LAntenna" parent="Thorax/Head" index="5"]
+rotation = -0.230383
+
+[node name="LSeg2" parent="Thorax/Head/LAntenna" index="0"]
+rotation = 1.33343
+
+[node name="RAntenna" parent="Thorax/Head" index="6"]
+rotation = -0.441568
+
+[node name="RSeg2" parent="Thorax/Head/RAntenna" index="0"]
+rotation = -1.58127
+
+[node name="AntimationPlayer" parent="." index="2"]
+anims/FormicaGyneIdle = ExtResource( 3 )
+anims/LasiusGyneIdle = ExtResource( 2 )

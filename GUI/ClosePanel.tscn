@@ -68,5 +68,10 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BlackScreenTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 [connection signal="pressed" from="YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_NoButton_pressed"]
+[connection signal="timeout" from="BlackScreenTimer" to="." method="_on_BlackScreenTimer_timeout"]

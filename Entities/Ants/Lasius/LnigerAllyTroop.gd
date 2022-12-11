@@ -6,10 +6,10 @@ func constructor():
 	#self.texture = null
 	#$Highlight.texture = load("res://Sprites/Entities/TroopHighlight.png") #Assigns highlights's texture
 	health = 30
-	strength = 20
+	strength = 15
 	species = "Lasius niger"
 	animationplayer = load("res://Entities/Animations/LasiusAnimations/AntmationsHDnigerTroop.tscn")
-	
+	value = 50
 	tilescale = 1
 
 

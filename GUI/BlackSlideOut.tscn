@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/BlackSlideOut.gd" type="Script" id=1]
+
+[node name="BlackSlideOut" type="Node2D"]
+pause_mode = 2
+z_index = 32
+
+[node name="BlackSlideOut" type="ColorRect" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="BlackSlideOut"]
+
+[node name="DeathTimer" type="Timer" parent="BlackSlideOut"]
+wait_time = 0.5
+one_shot = true
+[connection signal="timeout" from="BlackSlideOut/DeathTimer" to="BlackSlideOut" method="_on_DeathTimer_timeout"]

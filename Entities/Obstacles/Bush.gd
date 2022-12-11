@@ -15,7 +15,7 @@ func turn_rollover():
 							return
 			
 			#Creates an entity on this tile
-			var entity = load("res://Entities/NonAnts/NonAntcestor.tscn").instance()
+			var entity = load("res://Entities/NonAnts/Earwig.tscn").instance()
 			players.get_child(3).add_child(entity)
 			entity.set_occupiedtile(occupiedtile)
 			producetimer = 0

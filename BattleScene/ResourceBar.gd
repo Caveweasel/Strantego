@@ -7,6 +7,7 @@ func arena_update():
 	update()
 
 func arena_ready():
+	max_value = resourcemanager.maxresources
 	update()
 
 

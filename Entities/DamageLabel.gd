@@ -5,11 +5,20 @@ extends Node2D
 
 func start(num, pos):
 #	number = -num
-	$Number.text = str(num)
+	if num <= 0:
+		$Number.text = str(num)
+	else:
+		$Number.text = "+" + str(num)
 	position = pos
 
 
+func change_type(color,image):
+	$Number.add_color_override("font_color", color)
+	$Category.texture = image
+
+
 func _on_HalfTimer_timeout():
+	$HalfTimer.stop()
 	modulate = Color(1,1,1,1)
 	var postween = $PosTween
 	postween.interpolate_property(self, "position",

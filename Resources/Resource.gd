@@ -8,6 +8,7 @@ var occupiedxtile = 0
 var occupiedytile = 0
 #Resource variables
 export var resources = 10
+export var croptype = "grass"
 
 
 func arena_ready():

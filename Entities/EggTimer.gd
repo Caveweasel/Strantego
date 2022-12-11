@@ -6,6 +6,7 @@ onready var egg = load("res://Entities/Egg.tscn")
 
 
 func setup(eggcount):
+	yield(get_tree(), "idle_frame") #Wait one frame
 	for i in eggcount:
 		add_child(egg.instance())
 		get_child(i).global_position = global_position + Vector2(128 / (eggcount + 1) * (i + 1), 0)
@@ -14,6 +15,7 @@ func setup(eggcount):
 
 
 func egg_update(eggs):
+	yield(get_tree(), "idle_frame") #Wait one frame
 	for i in eggs:
 		get_child(i).texture = load("res://Sprites/EggVis.png")
 

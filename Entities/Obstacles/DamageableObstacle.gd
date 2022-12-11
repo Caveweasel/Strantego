@@ -30,6 +30,11 @@ func arena_ready():
 
 func damage(damage, aggressor): #Takes damage
 	health -= damage
+	
+	var damagelabel = load("res://Entities/DamageLabel.tscn").instance()
+	arena.add_child(damagelabel)
+	damagelabel.start(-damage, global_position)
+	
 	$AnimationTimer.start()
 #	if damage >= health:
 	if health <= 0:

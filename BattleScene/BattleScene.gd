@@ -4,6 +4,10 @@ onready var players = $Players
 #Arena variables
 export var arenalength = 5 #How long the arena is in tiles
 export var arenawidth = 3 #How wide the arena is in tiles
+#export var area = "EUTier1"
+export var levelnum = 0
+export var levelsunlockedoncompletion = [1]
+export var upgradesunlockedoncompletion = [-1, "startresource"] #Which ant/upgrade it unlocks on completion. -1 is nothing unlocked
 var tiles = [] #An array of tiles and their position
 #var arenabiome #Which biome this arena is in
 var turn #Whose turn it is
@@ -47,6 +51,9 @@ func _ready():
 	$Camera.position.x = float(arenalength) / 2 * 128 - 64
 	$Camera.position.y =float(arenawidth) / 2 * 128 - 64 + (137*(1+zoom))
 #	arenabiome = plains()
+	
+	$BlackSlideOut/BlackSlideOut.rect_position = $Camera.position - Vector2(960,540)
+	$BlackSlideOut/BlackSlideOut.slide_out()
 	
 	selectedcolony = players.get_child(selectedcolonynumber)
 	
@@ -101,6 +108,7 @@ func _on_NextTurnButton_pressed():
 				selectedcolony.get_child(i).selected = false
 		
 		$Camera/GUI/KillButton.check_pressable(selectedcolony)
+		$Camera/GUI/UpgradeButton.check_pressable(selectedcolony)
 		
 		get_tree().call_group("Arena", "turn_update")
 		select_movers()
@@ -118,6 +126,7 @@ func select_movers():
 					selectedcolony.get_child(i).do()
 					$Camera/GUI/InfoBox.refresh(selectedcolony.get_child(i))
 					$Camera/GUI/KillButton.check(selectedcolony.get_child(i))
+					$Camera/GUI/UpgradeButton.check(selectedcolony.get_child(i))
 					return
 		
 		yield(get_tree(), "idle_frame") #Wait one frame
@@ -139,6 +148,7 @@ func select_movers():
 		#If no entity can move enable the NextTurnButton
 		$Camera/GUI/NextTurnButton.disabled = false
 		$Camera/GUI/KillButton.disabled = true
+		$Camera/GUI/UpgradeButton.disabled = true
 		$Camera/GUI/InfoBox.close()
 #	else:
 #		_on_NextTurnButton_pressed()
@@ -149,18 +159,11 @@ func check_if_empty():
 		return true
 	
 	for i in selectedcolony.get_child_count():
-		if not selectedcolony.get_child(i).dead:
+		if not selectedcolony.get_child(i).dead and selectedcolony.get_child(i).moveable:
 			return false
 	return true
 
 
-func _on_KillButton_pressed():
-	for i in selectedcolony.get_child_count(): 
-		if selectedcolony.get_child(i).moveable:
-			if not selectedcolony.get_child(i).moved and not selectedcolony.get_child(i).skipthisentity and not selectedcolony.get_child(i).dead:
-#				selectedcolony.get_child(i).damage(9999, null)
-				selectedcolony.get_child(i).dead = true
-				selectedcolony.get_child(i)._on_AnimationTimer_timeout()
 
 
 func _process(_delta):
@@ -196,8 +199,43 @@ func end_game(won):
 	gamehasended = true
 	$Camera/GUI/NextTurnButton.disabled = true
 	$Camera/GUI/KillButton.disabled = true
+	$Camera/GUI/UpgradeButton.disabled = true
 	$Camera/GUI/InfoBox.close()
 	$Camera/GUI/WinPanel.move_in(won)
+	
+	if won:
+		var global = get_node("/root/Global")
+		
+		#If this level has been beaten, give some money
+		if global.levelsbeaten[levelnum]:
+			global.money += global.levelreplayedmoney
+		#If the level unlocks an upgrade, unlock it if it isn't unlocked, otherwise give money
+		elif upgradesunlockedoncompletion[0] >= 0:
+			if upgradesunlockedoncompletion[1] == "startresource":
+#				if not global.unlockedstartresourceupgrades[upgradesunlockedoncompletion[0]]:
+				global.unlock_start_resource_upgrade(upgradesunlockedoncompletion[0])
+			elif upgradesunlockedoncompletion[1] == "maxresource":
+#				if not global.unlockedmaxresourceupgrades[upgradesunlockedoncompletion[0]]:
+				global.unlock_max_resource_upgrade(upgradesunlockedoncompletion[0])
+			elif upgradesunlockedoncompletion[1] == "species":
+#				if not global.unlockedspecies[upgradesunlockedoncompletion[0]]:
+				global.unlockedspecies[upgradesunlockedoncompletion[0]] = true
+		
+		#If this level hasn't been beaten and doesn't unlock upgrades, give more money
+		else:
+			global.money += global.levelcompletedmoney
+		
+		if global.money >= global.maxmoney:
+			global.money = global.maxmoney
+		
+		
+		#Unlocks levels this level unlocks
+		for i in levelsunlockedoncompletion.size():
+			global.levelsunlocked[levelsunlockedoncompletion[i]] = true
+		
+		global.levelsbeaten[levelnum] = true
+		
+	
 
 
 #func _process(_delta):
@@ -253,7 +291,23 @@ func end_game(won):
 ##					return
 #		$NextTurnButton.disabled = false
 
+func _on_KillButton_pressed():
+	for i in selectedcolony.get_child_count(): 
+		if selectedcolony.get_child(i).moveable:
+			if not selectedcolony.get_child(i).moved and not selectedcolony.get_child(i).skipthisentity and not selectedcolony.get_child(i).dead:
+#					selectedcolony.get_child(i).damage(9999, null)
+				selectedcolony.get_child(i).dead = true
+				selectedcolony.get_child(i)._on_AnimationTimer_timeout()
+				$Camera/GUI/KillButton.release_focus()
+				return
 
 
 func _on_CloseButton_pressed():
 	$Camera/GUI/ClosePanel.move_in()
+
+
+func _on_UpgradeButton_pressed():
+	for i in selectedcolony.get_child_count(): 
+		if selectedcolony.get_child(i).moveable:
+			if not selectedcolony.get_child(i).moved and not selectedcolony.get_child(i).skipthisentity and not selectedcolony.get_child(i).dead and selectedcolony.get_child(i).isforager:
+				selectedcolony.get_child(i).turn_into_sat_nest()

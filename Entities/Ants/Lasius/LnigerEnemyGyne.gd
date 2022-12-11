@@ -14,7 +14,7 @@ func _ready():
 	forager = load("res://Entities/Ants/Lasius/LnigerEnemyForager.tscn")
 	foragercost = 10
 	foragerincubationtime = 2
-	foragerefficiency = 0.5
+	foragerefficiency = 0.4
 	troop = load("res://Entities/Ants/Lasius/LnigerEnemyTroop.tscn")
 	troopcost = 20
 	troopincubationtime = 3

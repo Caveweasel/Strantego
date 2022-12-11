@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Entities/Animations/FormicaAnimations/AntmationsHDFormica.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Animations/FormicaAnimations/FormicaForagerIdle.tres" type="Animation" id=2]
+
+[node name="AntmationsHD" instance=ExtResource( 1 )]
+scale = Vector2( 0.45, 0.45 )
+
+[node name="Thorax" parent="." index="1"]
+position = Vector2( 0, 2.128 )
+rotation = -0.0540494
+
+[node name="BLleg" parent="Thorax" index="0"]
+rotation = 0.78692
+
+[node name="BLSeg2" parent="Thorax/BLleg" index="0"]
+rotation = -1.37785
+
+[node name="BLSeg3" parent="Thorax/BLleg/BLSeg2" index="0"]
+rotation = -5.04823
+
+[node name="MLleg" parent="Thorax" index="1"]
+position = Vector2( 5.80644, -0.512224 )
+
+[node name="MLSeg2" parent="Thorax/MLleg" index="0"]
+rotation = -0.0409299
+
+[node name="FLSeg2" parent="Thorax/FLleg" index="0"]
+rotation = 0.950527
+
+[node name="FLSeg3" parent="Thorax/FLleg/FLSeg2" index="0"]
+rotation = -1.16357
+
+[node name="Gaster" parent="Thorax/GhostPetiole/GhostPostPetiole" index="0"]
+rotation = -0.0810721
+
+[node name="BRleg" parent="Thorax" index="7"]
+rotation = 0.69909
+
+[node name="BRSeg2" parent="Thorax/BRleg" index="0"]
+rotation = -1.23597
+
+[node name="BRSeg3" parent="Thorax/BRleg/BRSeg2" index="0"]
+rotation = -5.05904
+
+[node name="MRSeg2" parent="Thorax/MRleg" index="0"]
+rotation = -0.30143
+
+[node name="MRSeg3" parent="Thorax/MRleg/MRSeg2" index="0"]
+rotation = 0.436949
+
+[node name="FRleg" parent="Thorax" index="9"]
+rotation = 0.158207
+
+[node name="FRSeg2" parent="Thorax/FRleg" index="0"]
+rotation = 0.295239
+
+[node name="FRSeg3" parent="Thorax/FRleg/FRSeg2" index="0"]
+rotation = -0.765916
+
+[node name="Head" parent="Thorax" index="10"]
+rotation = 0.390731
+
+[node name="RMandible" parent="Thorax/Head" index="3"]
+self_modulate = Color( 0.301961, 0.298039, 0.298039, 1 )
+rotation = -0.244967
+
+[node name="LMandible" parent="Thorax/Head" index="4"]
+self_modulate = Color( 0.301961, 0.298039, 0.298039, 1 )
+rotation = -0.255943
+
+[node name="LAntenna" parent="Thorax/Head" index="5"]
+rotation = -0.0549492
+
+[node name="LSeg2" parent="Thorax/Head/LAntenna" index="0"]
+rotation = 1.48432
+
+[node name="RAntenna" parent="Thorax/Head" index="6"]
+rotation = -0.73456
+
+[node name="RSeg2" parent="Thorax/Head/RAntenna" index="0"]
+rotation = -1.60677
+
+[node name="AntimationPlayer" parent="." index="2"]
+anims/FormicaForagerIdle = ExtResource( 2 )

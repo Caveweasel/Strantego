@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://BattleScene/EarthTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Sprites/Level/NextTurnButtonPressed.png" type="Texture" id=2]
@@ -7,9 +7,8 @@
 [ext_resource path="res://Sprites/Level/GUI.png" type="Texture" id=5]
 [ext_resource path="res://GUI/ClosePanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Sprites/Level/NextTurnButton.png" type="Texture" id=7]
-[ext_resource path="res://Entities/Ants/Lasius/LnigerAllyGyne.tscn" type="PackedScene" id=8]
 [ext_resource path="res://BattleScene/ResourceManager.gd" type="Script" id=9]
-[ext_resource path="res://Entities/Ants/Lasius/LnigerEnemyGyne.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Sprites/Level/Objective.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Level/ResourceBarEmpty.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Level/ResourceBarFull.png" type="Texture" id=13]
 [ext_resource path="res://BattleScene/ResourceBar.gd" type="Script" id=14]
@@ -29,6 +28,11 @@
 [ext_resource path="res://Sprites/Level/AlphaWinPanel.png" type="Texture" id=28]
 [ext_resource path="res://BattleScene/WinPanel.gd" type="Script" id=29]
 [ext_resource path="res://Fonts/ArialBlack.tres" type="DynamicFont" id=30]
+[ext_resource path="res://BattleScene/UpgradeButton.gd" type="Script" id=31]
+[ext_resource path="res://Sprites/Level/UpgradeButtonPressed.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Level/UpgradeButton.png" type="Texture" id=33]
+[ext_resource path="res://GUI/BlackSlideOut.tscn" type="PackedScene" id=34]
+[ext_resource path="res://GUI/Earth.tres" type="TileSet" id=35]
 
 [sub_resource type="ShortCut" id=1]
 
@@ -56,10 +60,10 @@ script = ExtResource( 26 )
 
 [node name="Grass" type="TileMap" parent="."]
 position = Vector2( -64, -64 )
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 35 )
 cell_size = Vector2( 128, 128 )
 format = 1
-tile_data = PoolIntArray( -65541, 0, 3, -65540, 0, 3, -65539, 0, 3, -65538, 0, 3, -65537, 0, 3, -131072, 0, 3, -131071, 0, 3, -131070, 0, 3, -131069, 0, 3, -131068, 0, 3, -131067, 0, 3, -131066, 0, 3, -131065, 0, 3, -131064, 0, 3, -131063, 0, 65539, -5, 0, 3, -4, 0, 3, -3, 0, 3, -2, 0, 3, -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 2, -65530, 0, 131075, -65529, 0, 131075, -65528, 0, 65539, -65527, 0, 65539, 65531, 0, 3, 65532, 0, 3, 65533, 0, 3, 65534, 0, 3, 65535, 0, 65536, 5, 0, 65538, 6, 0, 3, 7, 0, 3, 8, 0, 65539, 9, 0, 65539, 131067, 0, 3, 131068, 0, 3, 131069, 0, 3, 131070, 0, 3, 131071, 0, 65536, 65541, 0, 65538, 65542, 0, 3, 65543, 0, 131075, 65544, 0, 65539, 65545, 0, 65539, 196603, 0, 3, 196604, 0, 3, 196605, 0, 3, 196606, 0, 3, 196607, 0, 65536, 131077, 0, 65538, 131078, 0, 65539, 131079, 0, 65539, 131080, 0, 65539, 131081, 0, 65539, 262139, 0, 3, 262140, 0, 3, 262141, 0, 3, 262142, 0, 3, 262143, 0, 131072, 196608, 0, 131073, 196609, 0, 131073, 196610, 0, 131073, 196611, 0, 131073, 196612, 0, 131073, 196613, 0, 131074, 196614, 0, 3, 196615, 0, 131075, 196616, 0, 65539, 196617, 0, 65539, 327675, 0, 65539, 327676, 0, 65539, 327677, 0, 65539, 327678, 0, 65539, 327679, 0, 65539, 262144, 0, 65539, 262145, 0, 65539, 262146, 0, 65539, 262147, 0, 65539, 262148, 0, 65539, 262149, 0, 65539, 262150, 0, 65539, 262151, 0, 65539, 262152, 0, 65539, 262153, 0, 65539 )
+tile_data = PoolIntArray( -65541, 1, 65538, -65540, 1, 65538, -65539, 1, 65538, -65538, 1, 65538, -65537, 1, 65538, -131072, 1, 65538, -131071, 1, 65538, -131070, 1, 65538, -131069, 1, 65538, -131068, 1, 65538, -131067, 1, 65538, -131066, 1, 65538, -131065, 1, 65538, -131064, 1, 65538, -131063, 1, 65538, -5, 1, 65538, -4, 1, 65538, -3, 1, 65538, -2, 1, 65538, -1, 1, 65539, -65536, 1, 131073, -65535, 1, 131073, -65534, 1, 131073, -65533, 1, 131073, -65532, 1, 131073, -65531, 1, 131074, -65530, 1, 65538, -65529, 1, 65538, -65528, 1, 65538, -65527, 1, 65538, 65531, 1, 65538, 65532, 1, 65538, 65533, 1, 65538, 65534, 1, 65538, 65535, 1, 131075, 5, 1, 1, 6, 1, 65538, 7, 1, 65538, 8, 1, 65538, 9, 1, 65538, 131067, 1, 65538, 131068, 1, 65538, 131069, 1, 65538, 131070, 1, 65538, 131071, 1, 131075, 65541, 1, 1, 65542, 1, 65538, 65543, 1, 65538, 65544, 1, 65538, 65545, 1, 65538, 196603, 1, 65538, 196604, 1, 65538, 196605, 1, 65538, 196606, 1, 65538, 196607, 1, 131075, 131077, 1, 1, 131078, 1, 65538, 131079, 1, 65538, 131080, 1, 65538, 131081, 1, 65538, 262139, 1, 65538, 262140, 1, 65538, 262141, 1, 65538, 262142, 1, 65538, 262143, 1, 2, 196608, 1, 3, 196609, 1, 3, 196610, 1, 3, 196611, 1, 3, 196612, 1, 3, 196613, 1, 65537, 196614, 1, 65538, 196615, 1, 65538, 196616, 1, 65538, 196617, 1, 65538, 327675, 1, 65538, 327676, 1, 65538, 327677, 1, 65538, 327678, 1, 65538, 327679, 1, 65538, 262144, 1, 65538, 262145, 1, 65538, 262146, 1, 65538, 262147, 1, 65538, 262148, 1, 65538, 262149, 1, 65538, 262150, 1, 65538, 262151, 1, 65538, 262152, 1, 65538, 262153, 1, 65538 )
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 256, 256 )
@@ -71,22 +75,6 @@ margin_top = 268.0
 margin_right = 959.842
 margin_bottom = 540.0
 texture = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ResourceBar" type="TextureProgress" parent="Camera/GUI" groups=[
-"Arena",
-]]
-margin_left = 12.0
-margin_top = 28.0
-margin_right = 45.0
-margin_bottom = 260.0
-value = 50.0
-texture_under = ExtResource( 12 )
-texture_progress = ExtResource( 13 )
-fill_mode = 3
-script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -126,7 +114,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton2" type="TextureButton" parent="Camera/GUI"]
+[node name="UpgradeButton" type="TextureButton" parent="Camera/GUI" groups=[
+"Arena",
+]]
 anchor_left = 0.0138688
 anchor_top = -0.0130878
 anchor_right = 0.0138688
@@ -135,13 +125,17 @@ margin_left = 258.372
 margin_top = 57.5599
 margin_right = 386.372
 margin_bottom = 209.56
-disabled = true
-texture_disabled = ExtResource( 16 )
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 32 )
+texture_disabled = ExtResource( 32 )
+script = ExtResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="TextureButton3" type="TextureButton" parent="Camera/GUI"]
+[node name="TextureButton3" type="TextureButton" parent="Camera/GUI" groups=[
+"Arena",
+]]
 anchor_left = 0.0138688
 anchor_top = -0.0130878
 anchor_right = 0.0138688
@@ -179,6 +173,22 @@ margin_top = 28.0
 margin_right = 1289.0
 margin_bottom = 28.0
 script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResourceBar" type="TextureProgress" parent="Camera/GUI/InfoBox" groups=[
+"Arena",
+]]
+margin_left = -1277.0
+margin_right = -1244.0
+margin_bottom = 232.0
+max_value = 50.0
+value = 50.0
+texture_under = ExtResource( 12 )
+texture_progress = ExtResource( 13 )
+fill_mode = 3
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -258,10 +268,11 @@ __meta__ = {
 
 [node name="Species" type="Label" parent="Camera/GUI/InfoBox"]
 margin_left = 210.0
-margin_right = 423.0
+margin_right = 593.0
 margin_bottom = 46.0
 custom_fonts/font = ExtResource( 30 )
 text = "Dave"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -272,7 +283,7 @@ margin_top = -812.0
 margin_right = 223.158
 margin_bottom = -766.0
 custom_fonts/font = ExtResource( 30 )
-text = "Alpha v0.0.2"
+text = "Alpha v0.0.4"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -291,6 +302,28 @@ __meta__ = {
 [node name="CloseButton" parent="Camera/GUI" instance=ExtResource( 4 )]
 margin_top = -796.0
 margin_bottom = -768.0
+
+[node name="Objective" type="TextureRect" parent="Camera/GUI"]
+self_modulate = Color( 0.227451, 0.439216, 0.972549, 1 )
+margin_left = 8.0
+margin_top = -696.0
+margin_right = 40.0
+margin_bottom = -664.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ObjectiveLabel" type="Label" parent="Camera/GUI/Objective"]
+margin_left = 40.0
+margin_top = -8.0
+margin_right = 463.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 30 )
+text = "Defeat the enemy queen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ResourceLabel" type="Label" parent="."]
 anchor_top = 1.0
@@ -314,14 +347,9 @@ __meta__ = {
 [node name="Allies" type="Node" parent="Players"]
 script = ExtResource( 9 )
 
-[node name="Gyne" parent="Players/Allies" instance=ExtResource( 8 )]
-position = Vector2( 0, 128 )
-
 [node name="AI1" type="Node" parent="Players"]
 script = ExtResource( 9 )
-
-[node name="Gyne" parent="Players/AI1" instance=ExtResource( 11 )]
-position = Vector2( 512, 128 )
+isAI = true
 
 [node name="AI2" type="Node" parent="Players"]
 
@@ -337,7 +365,10 @@ script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BlackSlideOut" parent="." instance=ExtResource( 34 )]
 [connection signal="pressed" from="Camera/GUI/KillButton" to="." method="_on_KillButton_pressed"]
+[connection signal="pressed" from="Camera/GUI/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/NextTurnButton" to="." method="_on_NextTurnButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/InfoBox/XButton" to="Camera/GUI/InfoBox" method="_on_XButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/CloseButton" to="." method="_on_CloseButton_pressed"]

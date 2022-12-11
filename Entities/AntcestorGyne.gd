@@ -7,16 +7,17 @@ onready var players = get_node("/root/BattleSceneTest/Players")
 onready var arena = get_node("/root/BattleSceneTest")
 onready var ownallies = get_parent() #Which entities it is allies with
 #Object variables
-var value = 1000
+var value = 9999
 var occupiedtile = 4 #The tile this entity is occupying
 var occupiedxtile = 0 #The X tile this entity is occupying
 var occupiedytile = 0 #The Y tile this entity is occupying
 #Entity variables
-var health = 40
+var health = 60
 var strength = 0
 var dead = false
 var attackable = true
 var isAI = false
+var isant = true
 var animation
 var animationplayer
 var tilescale #How much space this entity takes up on the tile: 0 = XS, 1 = S, 2 = M...
@@ -44,6 +45,7 @@ var shakeint = 0 #How far into the shake animation it is
 var shakedistance = 16
 var Aiconcolor = Color(0.3,0.3,1,0.75)
 var Diconcolor = Color(0.3,0.3,1,0.75)
+var isforager = false
 
 
 func arena_ready():
@@ -69,7 +71,10 @@ func turn_update():
 							shake(-shakedistance, Tween.EASE_IN)
 							backlog = true
 				if not backlog:
-					e.add_child(forager.instance())
+					var newant = forager.instance()
+					e.add_child(newant)
+					newant.occupiedtile = occupiedtile
+					newant.position = position
 					producing = "null"
 					eggtimer = 0
 					if isAI:
@@ -85,7 +90,10 @@ func turn_update():
 							shake(-shakedistance, Tween.EASE_IN)
 							backlog = true
 				if not backlog:
-					e.add_child(troop.instance())
+					var newant = troop.instance()
+					e.add_child(newant)
+					newant.occupiedtile = occupiedtile
+					newant.position = position
 					producing = "null"
 					eggtimer = 0
 					if isAI:
@@ -122,7 +130,10 @@ func arena_update():
 					return
 		
 		if producing == "forager": #If this gyne is producing a forager
-			e.add_child(forager.instance())
+			var newant = forager.instance()
+			e.add_child(newant)
+			newant.occupiedtile = occupiedtile
+			newant.position = position
 			$EggTimer.reset()
 			producing = "null"
 			eggtimer = 0
@@ -130,7 +141,10 @@ func arena_update():
 			backlog = false
 		
 		elif producing == "troop": #If this gyne is producing a troop
-			e.add_child(troop.instance())
+			var newant = troop.instance()
+			e.add_child(newant)
+			newant.occupiedtile = occupiedtile
+			newant.position = position
 			$EggTimer.reset()
 			producing = "null"
 			eggtimer = 0

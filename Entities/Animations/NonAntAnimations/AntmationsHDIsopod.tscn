@@ -1,0 +1,331 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Entities/Animations/AntimationsHD.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Entities/Parts/Circle.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Entities/Parts/LineLarge.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Entities/Parts/LineLong.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Entities/Parts/LineMedium.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Entities/Parts/LineSmall.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "IsopodIdle"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Thorax:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -8, 0 ), Vector2( -8, 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Thorax/Leg4:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -24.8559, 12.7274 ), Vector2( -24.856, 10.727 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Thorax/Leg3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -17.6071, 14.5637 ), Vector2( -17.607, 12.564 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Thorax/Leg2:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -10.1482, 15.3296 ), Vector2( -10.148, 13.33 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Thorax/Leg1:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -2.23106, 16.0468 ), Vector2( -2.231, 14.047 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Thorax/Leg0:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 6.01749, 16.179 ), Vector2( 6.017, 14.179 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Thorax/Backleg:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 39.5374, 14.6706 ), Vector2( 39.537, 12.671 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Thorax/Head/RAntenna:rotation_degrees")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -56.9157, -70.1945 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Thorax/Head/RAntenna/Seg1:rotation_degrees")
+tracks/8/interp = 2
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 68.0865, 104.206 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Thorax/Head/RAntenna/Seg1/Seg2:rotation_degrees")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -103.726, -135.444 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Thorax/Head/LAntenna:rotation_degrees")
+tracks/10/interp = 2
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 48.5178, 72.8101 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Thorax/Head/LAntenna/Seg1:rotation_degrees")
+tracks/11/interp = 2
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -68.7346, -102.324 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Thorax/Head/LAntenna/Seg1/Seg2:rotation_degrees")
+tracks/12/interp = 2
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0.5, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -251.913, -229.965 ]
+}
+
+[node name="AntmationsHD" type="Node2D"]
+scale = Vector2( 1.4, 1.4 )
+
+[node name="Shadow" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.478431 )
+self_modulate = Color( 0, 0, 0, 0.247059 )
+position = Vector2( -2, 16 )
+scale = Vector2( 0.9, 0.15 )
+texture = ExtResource( 2 )
+
+[node name="ShadowTween" type="Tween" parent="Shadow"]
+
+[node name="Thorax" type="Node2D" parent="."]
+position = Vector2( -8, 0.033145 )
+
+[node name="Seg5" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.345098, 0.360784, 0.431373, 1 )
+position = Vector2( -5.99491, 1.04328 )
+scale = Vector2( 0.549755, 0.304287 )
+texture = ExtResource( 2 )
+
+[node name="Seg4" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.380392, 0.396078, 0.458824, 1 )
+position = Vector2( -1.86572, -0.961545 )
+scale = Vector2( 0.593369, 0.351345 )
+texture = ExtResource( 2 )
+
+[node name="Seg3" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.419608, 0.431373, 0.482353, 1 )
+position = Vector2( 6.73256, -2.44901 )
+scale = Vector2( 0.679903, 0.38215 )
+texture = ExtResource( 2 )
+
+[node name="Seg2" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.458824, 0.466667, 0.505882, 1 )
+position = Vector2( 12.5704, -1.42345 )
+scale = Vector2( 0.640458, 0.367358 )
+texture = ExtResource( 2 )
+
+[node name="Seg1" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.494118, 0.498039, 0.533333, 1 )
+position = Vector2( 19.5915, 0.785449 )
+scale = Vector2( 0.5665, 0.327913 )
+texture = ExtResource( 2 )
+
+[node name="Seg0" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.537255, 0.541176, 0.568627, 1 )
+position = Vector2( 24.802, 3.26456 )
+scale = Vector2( 0.479937, 0.276265 )
+texture = ExtResource( 2 )
+
+[node name="Backleg" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.686275, 0.690196, 0.701961, 1 )
+position = Vector2( 39.5374, 14.6374 )
+rotation = -0.381966
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="Leg4" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.686275, 0.690196, 0.701961, 1 )
+position = Vector2( -24.8559, 12.6942 )
+rotation = 0.598405
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="Leg3" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.686275, 0.690196, 0.701961, 1 )
+position = Vector2( -17.6071, 14.5306 )
+rotation = 0.527089
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="Leg2" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.686275, 0.690196, 0.701961, 1 )
+position = Vector2( -10.1482, 15.2964 )
+rotation = 0.406662
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="Leg1" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.686275, 0.690196, 0.701961, 1 )
+position = Vector2( -2.23106, 16.0136 )
+rotation = 0.331613
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="Leg0" type="Sprite" parent="Thorax"]
+self_modulate = Color( 0.686275, 0.690196, 0.701961, 1 )
+position = Vector2( 6.01748, 16.1459 )
+rotation = 0.18326
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 7 )
+
+[node name="Head" type="Node2D" parent="Thorax"]
+position = Vector2( 19.5915, 0.785449 )
+
+[node name="Head" type="Sprite" parent="Thorax/Head"]
+self_modulate = Color( 0.627451, 0.631373, 0.658824, 1 )
+position = Vector2( 10.0114, 6.80545 )
+scale = Vector2( 0.364429, 0.16867 )
+texture = ExtResource( 2 )
+
+[node name="REye" type="Sprite" parent="Thorax/Head"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -4.62915, 6.70003 )
+scale = Vector2( 0.03, 0.03 )
+texture = ExtResource( 2 )
+
+[node name="LEye" type="Sprite" parent="Thorax/Head"]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 27.2103, 6.76308 )
+scale = Vector2( 0.01, 0.03 )
+texture = ExtResource( 2 )
+
+[node name="RAntenna" type="Sprite" parent="Thorax/Head"]
+self_modulate = Color( 0.537255, 0.541176, 0.568627, 1 )
+position = Vector2( 10.1164, 10.7714 )
+rotation = -1.02776
+scale = Vector2( 0.54025, 0.54025 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -8 )
+
+[node name="Seg1" type="Sprite" parent="Thorax/Head/RAntenna"]
+self_modulate = Color( 0.572549, 0.576471, 0.623529, 1 )
+position = Vector2( 0.232922, -17.7658 )
+rotation = 1.28189
+texture = ExtResource( 3 )
+offset = Vector2( 0, -18 )
+
+[node name="Seg2" type="Sprite" parent="Thorax/Head/RAntenna/Seg1"]
+self_modulate = Color( 0.592157, 0.6, 0.67451, 1 )
+position = Vector2( -0.516869, -36.2213 )
+rotation = -1.89251
+texture = ExtResource( 4 )
+offset = Vector2( 0, -30 )
+
+[node name="LAntenna" type="Sprite" parent="Thorax/Head"]
+self_modulate = Color( 0.537255, 0.541176, 0.568627, 1 )
+position = Vector2( 15.994, 10.6769 )
+rotation = 0.909714
+scale = Vector2( 0.54025, 0.54025 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, -8 )
+
+[node name="Seg1" type="Sprite" parent="Thorax/Head/LAntenna"]
+self_modulate = Color( 0.572549, 0.576471, 0.623529, 1 )
+position = Vector2( 0.232922, -17.7658 )
+rotation = -1.28665
+texture = ExtResource( 3 )
+offset = Vector2( 0, -18 )
+
+[node name="Seg2" type="Sprite" parent="Thorax/Head/LAntenna/Seg1"]
+self_modulate = Color( 0.592157, 0.6, 0.67451, 1 )
+position = Vector2( -0.261021, -36.0419 )
+rotation = -4.33987
+texture = ExtResource( 4 )
+offset = Vector2( 0, -30 )
+
+[node name="AntimationPlayer" type="AnimationPlayer" parent="."]
+anims/IsopodIdle = SubResource( 1 )
+script = ExtResource( 1 )

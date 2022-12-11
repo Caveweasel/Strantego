@@ -1,6 +1,9 @@
 extends "res://Entities/Mover.gd"
 
 var efficiency = 1
+var harvestableresources = ["grass"]
+var satnest = load("res://Entities/AncestorSatelliteNest.tscn")
+onready var satnestcost = get_parent().get_node("Gyne").troopcost * 1.5
 
 
 func constructor():
@@ -15,6 +18,7 @@ func constructor():
 	hasspacebarability = true
 	animationplayer = load("res://Entities/Animations/AntimationsHD.tscn")
 	tilescale = 1
+	isforager = true
 
 
 func set_up_shadow():
@@ -25,12 +29,29 @@ func set_up_shadow():
 #	antimation()
 
 
+func turn_into_sat_nest():
+	var newant = satnest.instance()
+	ownallies.add_child(newant)
+	newant.occupiedtile = occupiedtile
+	newant.position = position
+	ownallies.resources -= satnestcost
+	dead = true
+	get_tree().call_group("Arena", "arena_update")
+	queue_free()
+
+
 func spacebar_ability():
 	#Harvests a resource
 	
 	for i in resources.get_child_count():
 		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile:
 			ownallies.resources += resources.get_child(i).resources * efficiency
+			
+			var resourcelabel = load("res://Entities/DamageLabel.tscn").instance()
+			arena.add_child(resourcelabel)
+			resourcelabel.change_type(Color(0,1,0), load("res://Sprites/Level/Resource.png"))
+			resourcelabel.start(resources.get_child(i).resources * efficiency, position)
+			resourcelabel._on_HalfTimer_timeout()
 	
 #	ownallies.resources += 1
 	moved = true
@@ -45,11 +66,18 @@ func can_use_spacebar_ability():
 	
 	#Detects resources in Resources node
 	for i in resources.get_child_count():
-		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile:
+		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile and can_harvest_resource(resources.get_child(i)):
 			return true
 	
 	
 	
+	return false
+
+
+func can_harvest_resource(resource):
+	for i in harvestableresources.size():
+		if harvestableresources[i] == resource.croptype:
+			return true
 	return false
 
 

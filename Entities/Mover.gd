@@ -120,4 +120,11 @@ func _input(_event):
 							skipthisentity = true
 							get_tree().call_group("Arena", "arena_update")
 		
+		
 		update_occupied_tile()
+		
+		var tween = $MovementTween
+		tween.interpolate_property(self, "position",
+		position, arena.tiles[occupiedtile], 0.5,
+		Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		tween.start()

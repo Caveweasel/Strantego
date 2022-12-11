@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/EnemyForager.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Animations/FormicaAnimations/AntmationsHDfuscaForager.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Entities/Ants/Formica/FfuscaEnemyForager.gd" type="Script" id=3]
+
+[node name="FfuscaEnemyForager" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="AntmationsHD" parent="." index="8" instance=ExtResource( 2 )]

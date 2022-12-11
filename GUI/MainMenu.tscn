@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fonts/ArialBlackBig.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Sprites/Level/ButtonPressed.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Level/Button.png" type="Texture" id=3]
 [ext_resource path="res://GUI/MainMenu.gd" type="Script" id=4]
 [ext_resource path="res://GUI/CloseButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI/BlackSlideOut.tscn" type="PackedScene" id=6]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -51,5 +52,12 @@ __meta__ = {
 }
 
 [node name="CloseButton" parent="." instance=ExtResource( 5 )]
+
+[node name="BlackSlideOut" parent="." instance=ExtResource( 6 )]
+
+[node name="BlackScreenTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 [connection signal="pressed" from="StartButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="timeout" from="BlackScreenTimer" to="." method="_on_BlackScreenTimer_timeout"]

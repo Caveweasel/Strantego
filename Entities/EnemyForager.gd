@@ -1,6 +1,7 @@
 extends "res://Entities/EnemyAntcestor.gd"
 
 var efficiency = 1
+var harvestableresources = ["grass"]
 
 
 func constructor():
@@ -28,6 +29,12 @@ func spacebar_ability():
 	for i in resources.get_child_count():
 		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile:
 			ownallies.resources += resources.get_child(i).resources * efficiency
+			
+			var resourcelabel = load("res://Entities/DamageLabel.tscn").instance()
+			arena.add_child(resourcelabel)
+			resourcelabel.change_type(Color(0,1,0), load("res://Sprites/Level/Resource.png"))
+			resourcelabel.start(resources.get_child(i).resources * efficiency, position)
+			resourcelabel._on_HalfTimer_timeout()
 	
 #	ownallies.resources += 1
 	moved = true
@@ -43,11 +50,18 @@ func can_use_spacebar_ability():
 	
 	#Detects resources in Resources node
 	for i in resources.get_child_count():
-		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile:
+		if resources.get_child(i).occupiedxtile == occupiedxtile and resources.get_child(i).occupiedytile == occupiedytile and can_harvest_resource(resources.get_child(i)):
 			return true
 	
 	
 	
+	return false
+
+
+func can_harvest_resource(resource):
+	for i in harvestableresources.size():
+		if harvestableresources[i] == resource.croptype:
+			return true
 	return false
 
 
@@ -62,7 +76,7 @@ func get_target():
 #			selectedresource.global_position.distance_to(resources.get_child(b).global_position)))
 		
 		#if global_position.distance_to(resources.get_child(b).global_position) < selectedresource.global_position.distance_to(resources.get_child(b).global_position): #If the distance to the resource is lower than the distance to the selected resource
-		if global_position.distance_to(resources.get_child(b).global_position) < global_position.distance_to(selectedresource.global_position): #If the distance to the resource is lower than the distance to the selected resource
+		if global_position.distance_to(resources.get_child(b).global_position) < global_position.distance_to(selectedresource.global_position) and can_harvest_resource(resources.get_child(b)): #If the distance to the resource is lower than the distance to the selected resource
 			resourceoccupied = false
 			for l in players.get_child_count(): #If there is another entity on the resource, don't go to it
 				for i in players.get_child(l).get_child_count():

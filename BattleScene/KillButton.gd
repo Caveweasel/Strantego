@@ -3,6 +3,7 @@ extends TextureButton
 onready var allies = get_node("/root/BattleSceneTest/Players/Allies")
 var alliesisselected = false
 
+
 func check_pressable(currentselectedcolony):
 	if currentselectedcolony == allies:
 		disabled = false

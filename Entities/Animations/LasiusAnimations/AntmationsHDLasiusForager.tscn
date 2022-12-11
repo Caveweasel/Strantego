@@ -6,6 +6,9 @@
 [node name="AntmationsHD" instance=ExtResource( 1 )]
 scale = Vector2( 0.4, 0.4 )
 
+[node name="MLleg" parent="Thorax" index="1"]
+position = Vector2( 5.62197, 2.12575 )
+
 [node name="Gaster" parent="Thorax/GhostPetiole/GhostPostPetiole" index="0"]
 rotation = -0.113446
 

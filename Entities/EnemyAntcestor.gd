@@ -16,7 +16,6 @@ var numberoftopvaluetiles = 1
 var valuearray = []
 var chosentile
 var path
-var isforager = false
 #var hasWaited = false
 
 

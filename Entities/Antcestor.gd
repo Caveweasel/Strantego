@@ -46,6 +46,7 @@ var canattack = true #If this entity can attack
 var attacktimer = 0
 
 var hasspacebarability = false #If this entity can do an action with the spacebar key f.eks. foragers can harvest with the spacebar key
+var isforager = false
 
 func _init():
 	moved = false
@@ -60,8 +61,8 @@ func _ready():
 	if isant:
 		gyne = get_parent().get_node("Gyne")
 		$MovementCircles.gyne = get_parent().get_node("Gyne")
-		occupiedtile = gyne.occupiedtile
-	position = arena.tiles[occupiedtile]
+		#occupiedtile = gyne.occupiedtile
+#	position = arena.tiles[occupiedtile]
 	update_occupied_tile()
 	if not hasspacebarability:
 		$MovementCircles/WASDIcons/Spacebar.self_modulate = Color(0,0,0,0)
@@ -76,7 +77,10 @@ func set_up_shadow():
 
 
 func arena_ready():
+	occupiedtile = (position.y/128*arena.arenalength)+(position.x/128)
+#	occupiedtile = 4
 	position = arena.tiles[occupiedtile]
+	print(occupiedtile)
 	arena_update()
 
 func arena_update():
@@ -85,23 +89,29 @@ func arena_update():
 #		position = arena.tiles[occupiedtile]
 	
 #	if not isAI:
-	var tween = $MovementTween
-	tween.interpolate_property(self, "position",
-	position, arena.tiles[occupiedtile], 0.5,
-	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-	tween.start()
+#	var tween = $MovementTween
+#	tween.interpolate_property(self, "position",
+#	position, arena.tiles[occupiedtile], 0.5,
+#	Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+#	tween.start()
 	
 	update_occupied_tile()
 	
 	# FIX: CRASH AFTER GYNE DIES
 	if not dead and isant:
 		
-		if occupiedtile == gyne.occupiedtile and not selected: #Hides itself if it is behind the gyne
+		var behindsomething = false
+		for b in ownallies.get_child_count():
+			if not ownallies.get_child(b) == self and ownallies.get_child(b).occupiedtile == occupiedtile:
+				behindsomething = true
+		
+		if behindsomething and not selected: #Hides itself if it is behind the gyne
 		#if occupiedtile == gyne.occupiedtile: #Hides itself if it is behind the gyne
 			self_modulate = Color(1,1,1,0)
 			shadow.self_modulate = Color(1,1,1,0)
 		
-		elif not occupiedtile == gyne.occupiedtile and self_modulate == Color(1,1,1,0): #Shows itself when moving away from the gyne
+		
+		elif not behindsomething and self_modulate == Color(1,1,1,0): #Shows itself when moving away from the gyne
 		#else: #Shows itself when moving away from the gyne
 			var visibilitytween = $VisibilityTween
 			visibilitytween.interpolate_property(self, "self_modulate",
@@ -231,8 +241,10 @@ func _process(_delta):
 
 
 func update_occupied_tile():
-	occupiedytile = ceil(float(occupiedtile / arena.arenalength)) #Finds out which Y tile this entity is occupying
-	occupiedxtile = ceil(float(occupiedtile - occupiedytile * arena.arenalength)) #Finds out which X tile this entity is occupying
+	occupiedytile = floor(float(occupiedtile / arena.arenalength))
+	occupiedxtile = occupiedtile - occupiedytile * arena.arenalength
+#	occupiedytile = ceil(float(occupiedtile / arena.arenalength)) #Finds out which Y tile this entity is occupying
+#	occupiedxtile = ceil(float(occupiedtile - occupiedytile * arena.arenalength)) #Finds out which X tile this entity is occupying
 
 
 func set_occupiedtile(tile):

@@ -9,11 +9,12 @@ func constructor():
 	health = 20
 	strength = 5
 	species = "Lasius niger"
-	efficiency = 0.5
+	efficiency = 0.4
 	hasspacebarability = true
 	isforager = true
 	animationplayer = load("res://Entities/Animations/LasiusAnimations/AntmationsHDLasiusForager.tscn")
 	tilescale = 1
+	value = 40
 
 func antimation():
 	animation = "LasiusForagerIdle"

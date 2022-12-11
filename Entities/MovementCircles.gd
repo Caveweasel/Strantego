@@ -224,10 +224,17 @@ func modulate_circles():
 #		if not e.occupiedtile == gyne.occupiedtile:
 #			e.get_node("Highlight").visible = true
 		e.get_node("Highlight").visible = true
-		if e.occupiedtile == gyne.occupiedtile:
-			gyne.visible = false
-			e.self_modulate = Color(1,1,1,1)
-			e.shadow.self_modulate = Color(1,1,1,0.25)
+#		if e.occupiedtile == gyne.occupiedtile:
+#			gyne.visible = false
+#			e.self_modulate = Color(1,1,1,1)
+#			e.shadow.self_modulate = Color(1,1,1,0.25)
+		
+		for b in ownallies.get_child_count():
+			if not ownallies.get_child(b) == e and ownallies.get_child(b).occupiedtile == e.occupiedtile:
+				ownallies.get_child(b).visible = false
+				e.self_modulate = Color(1,1,1,1)
+				e.shadow.self_modulate = Color(1,1,1,0.25)
+		
 		
 		#Moves the WASDIcons to their correct positions and makes them the correct color
 		if not e.isAI:
