@@ -24,9 +24,6 @@ position = Vector2( 256, 256 )
 [node name="Rock3" parent="Players/Obstacles" index="2" instance=ExtResource( 2 )]
 position = Vector2( 256, 384 )
 
-[node name="Gyne" parent="Players/AI1" index="0"]
-position = Vector2( 512, 384 )
-
 [node name="Isopod" parent="Players/AI2" index="0" instance=ExtResource( 5 )]
 position = Vector2( 128, 384 )
 

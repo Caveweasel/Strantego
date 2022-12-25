@@ -70,7 +70,7 @@ __meta__ = {
 }
 
 [node name="BlackScreenTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.001
 one_shot = true
 [connection signal="pressed" from="YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_NoButton_pressed"]

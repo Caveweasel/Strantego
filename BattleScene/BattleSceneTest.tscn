@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://BattleScene/EarthTiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Sprites/Level/NextTurnButtonPressed.png" type="Texture" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://Sprites/Level/GUI.png" type="Texture" id=5]
 [ext_resource path="res://GUI/ClosePanel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Sprites/Level/NextTurnButton.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Level/ButtonPressed.png" type="Texture" id=8]
 [ext_resource path="res://BattleScene/ResourceManager.gd" type="Script" id=9]
 [ext_resource path="res://Sprites/Level/Objective.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Level/Button.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/Level/ResourceBarEmpty.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Level/ResourceBarFull.png" type="Texture" id=13]
 [ext_resource path="res://BattleScene/ResourceBar.gd" type="Script" id=14]
@@ -33,6 +35,7 @@
 [ext_resource path="res://Sprites/Level/UpgradeButton.png" type="Texture" id=33]
 [ext_resource path="res://GUI/BlackSlideOut.tscn" type="PackedScene" id=34]
 [ext_resource path="res://GUI/Earth.tres" type="TileSet" id=35]
+[ext_resource path="res://Fonts/ArialBlackBig.tres" type="DynamicFont" id=36]
 
 [sub_resource type="ShortCut" id=1]
 
@@ -86,6 +89,33 @@ texture = ExtResource( 28 )
 script = ExtResource( 29 )
 
 [node name="MoveTween" type="Tween" parent="Camera/GUI/WinPanel"]
+
+[node name="ContinueButton" type="TextureButton" parent="Camera/GUI/WinPanel"]
+margin_left = -152.5
+margin_right = 152.5
+margin_bottom = 116.0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Label" parent="Camera/GUI/WinPanel/ContinueButton"]
+margin_left = 28.0
+margin_top = 11.0
+margin_right = 68.0
+margin_bottom = 25.0
+rect_scale = Vector2( 0.4, 0.4 )
+custom_fonts/font = ExtResource( 36 )
+text = "Continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlackScreenTimer" type="Timer" parent="Camera/GUI/WinPanel"]
+wait_time = 0.001
+one_shot = true
 
 [node name="ClosePanel" parent="Camera/GUI" instance=ExtResource( 6 )]
 pause_mode = 2
@@ -325,6 +355,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BlackSlideOut" parent="Camera" instance=ExtResource( 34 )]
+visible = false
+position = Vector2( -960, -540 )
+
 [node name="ResourceLabel" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -365,8 +399,8 @@ script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="BlackSlideOut" parent="." instance=ExtResource( 34 )]
+[connection signal="pressed" from="Camera/GUI/WinPanel/ContinueButton" to="Camera/GUI/WinPanel" method="_on_ContinueButton_pressed"]
+[connection signal="timeout" from="Camera/GUI/WinPanel/BlackScreenTimer" to="Camera/GUI/WinPanel" method="_on_BlackScreenTimer_timeout"]
 [connection signal="pressed" from="Camera/GUI/KillButton" to="." method="_on_KillButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/UpgradeButton" to="." method="_on_UpgradeButton_pressed"]
 [connection signal="pressed" from="Camera/GUI/NextTurnButton" to="." method="_on_NextTurnButton_pressed"]

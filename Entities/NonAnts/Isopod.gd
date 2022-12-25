@@ -11,8 +11,8 @@ func constructor():
 	shadow = get_node("AntmationsHD/Shadow")
 	health = 50
 	strength = 0
-	value = 10
-	resourcegain = 40
+	value = 35
+	resourcegain = 25
 
 
 func antimation():

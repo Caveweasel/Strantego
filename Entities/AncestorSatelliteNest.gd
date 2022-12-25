@@ -21,6 +21,7 @@ var animationplayer = load("res://Entities/Animations/LasiusAnimations/Antmation
 var animation
 var attackable = true
 var isAI = false
+var redstripes = null
 var isant = true
 var moved = true
 var selected = false

@@ -22,10 +22,10 @@ func move_out():
 
 
 func _on_YesButton_pressed():
-	var blackscreen = load("res://GUI/BlackSlideIn.tscn").instance()
-	get_node("/root/BattleSceneTest").add_child(blackscreen)
-	blackscreen.get_child(0).rect_position = get_parent().get_parent().position - Vector2(960,540)
-	blackscreen.get_child(0).slide_in()
+#	var blackscreen = load("res://GUI/BlackSlideIn.tscn").instance()
+#	get_node("/root/BattleSceneTest").add_child(blackscreen)
+#	blackscreen.get_child(0).rect_position = get_parent().get_parent().position - Vector2(960,540)
+#	blackscreen.get_child(0).slide_in()
 	$BlackScreenTimer.start()
 
 

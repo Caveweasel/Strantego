@@ -54,9 +54,10 @@ __meta__ = {
 [node name="CloseButton" parent="." instance=ExtResource( 5 )]
 
 [node name="BlackSlideOut" parent="." instance=ExtResource( 6 )]
+visible = false
 
 [node name="BlackScreenTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.001
 one_shot = true
 [connection signal="pressed" from="StartButton" to="." method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]

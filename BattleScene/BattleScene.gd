@@ -52,8 +52,9 @@ func _ready():
 	$Camera.position.y =float(arenawidth) / 2 * 128 - 64 + (137*(1+zoom))
 #	arenabiome = plains()
 	
-	$BlackSlideOut/BlackSlideOut.rect_position = $Camera.position - Vector2(960,540)
-	$BlackSlideOut/BlackSlideOut.slide_out()
+#	$Camera/BlackSlideOut/BlackSlideOut.rect_position = $Camera.position - Vector2(960,540)
+#	$Camera/BlackSlideOut.scale = Vector2(1,1) / $Camera.zoom
+#	$Camera/BlackSlideOut/BlackSlideOut.slide_out()
 	
 	selectedcolony = players.get_child(selectedcolonynumber)
 	

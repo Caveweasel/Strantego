@@ -2,6 +2,7 @@ extends "res://Entities/AntcestorGyne.gd"
 #Enemy variables
 #var AItype = "hyper aggressive"
 var foragerefficiency = 1
+var redstripes = true
 
 
 func _ready():

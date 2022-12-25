@@ -1,5 +1,7 @@
 extends "res://Entities/Antcestor.gd"
 
+var redstripes = false
+
 
 func do():
 	selected = true

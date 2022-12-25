@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Entities/MovementCircles.gd" type="Script" id=1]
 [ext_resource path="res://Entities/Antcestor.gd" type="Script" id=2]
@@ -10,11 +10,16 @@
 [ext_resource path="res://Sprites/D.png" type="Texture" id=9]
 [ext_resource path="res://Entities/Highlight.gd" type="Script" id=11]
 
+[sub_resource type="AudioStreamSample" id=1]
+
 [node name="Antcestor" type="Sprite" groups=[
 "Arena",
 ]]
 z_index = 2
 script = ExtResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource( 1 )
 
 [node name="MovementCircles" type="Node2D" parent="." groups=[
 "Arena",

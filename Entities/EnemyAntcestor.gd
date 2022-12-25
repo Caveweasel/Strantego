@@ -1,5 +1,6 @@
 extends "res://Entities/Antcestor.gd"
 #Enemy variables
+var redstripes = true
 #var AItype = "advancing left" #Will move left unless it can attack something
 var lefttilevalue = 0
 var uplefttilevalue = 0

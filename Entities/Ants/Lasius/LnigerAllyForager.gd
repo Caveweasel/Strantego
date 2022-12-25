@@ -13,6 +13,7 @@ func constructor():
 	canattack = true
 	hasspacebarability = true
 	animationplayer = load("res://Entities/Animations/LasiusAnimations/AntmationsHDLasiusForager.tscn")
+	satnest = load("res://Entities/Ants/Lasius/LnigerAllySatelliteNest.tscn")
 	tilescale = 1
 	isforager = true
 	value = 40

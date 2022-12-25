@@ -1,5 +1,7 @@
 extends "res://Entities/AntcestorGyne.gd"
 
+var redstripes = false
+
 
 func _ready():
 #	self.texture = load("res://Sprites/Entities/GyneAlly.png")
